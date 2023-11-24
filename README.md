@@ -1,1 +1,1 @@
-# prosept_hackaton
+# prosept_hackathon
