@@ -1,7 +1,13 @@
-import os
+from pydantic_settings import BaseSettings
 
-# Название проекта
-PROJECT_NAME = os.getenv('PROJECT_NAME', 'procept_hackathon')
 
-# Корневой каталог
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+class Settings(BaseSettings):
+    app_title: str = 'Prosept_Hackathon'
+    # Временное решение для тестов aiosqlite=0.17.0
+    database_url: str
+
+    class Config:
+        env_file = '.env'
+
+
+settings = Settings()
