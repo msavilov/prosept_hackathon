@@ -1,0 +1,19 @@
+.button-close {
+  background: url(../../images/icon_close.svg) no-repeat center;
+  z-index: 3;
+
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 22px;
+  right: 0;
+}
+@media (max-width: 576px) {
+  .button-close {
+    min-width: auto;
+    width: 22px;
+    height: 22px;
+    top: 13.55px;
+    right: 13.55px;
+  }
+}
