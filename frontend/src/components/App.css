@@ -1,0 +1,23 @@
+.App {
+    max-width: 1280px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .page {
+    background-color: #fff;
+    font-family: 'DIN Pro', Arial, sans-serif;
+    font-style: normal;
+    color: #000;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+  
