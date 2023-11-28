@@ -1,7 +1,0 @@
-.form__input_type_error {
-  padding-bottom: 0px;
-  border-bottom: 1px solid rgba(255, 0, 0, 1);
-}
-.form__input_type_error:focus-visible {
-  border-bottom: 1px solid rgba(255, 0, 0, 1);
-}
