@@ -25,7 +25,5 @@ async def get_all_dealer_prices(
     db_prices_list = await session.execute(
         select(DealerPrice)
     )
-    db_prices_list = db_prices_list.scalar().all()
+    db_prices_list = db_prices_list.scalars().all()
     return db_prices_list
-
-
