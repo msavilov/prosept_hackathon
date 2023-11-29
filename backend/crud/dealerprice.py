@@ -5,6 +5,9 @@ from backend.models.models import DealerPrice
 from backend.schemas.dealerprice import DealerPriceScheme
 
 
+
+
+
 async def get_all_dealer_prices(
         session: AsyncSession,
 ) -> list[DealerPrice]:
@@ -14,3 +17,5 @@ async def get_all_dealer_prices(
     )
     db_prices_list = db_prices_list.scalar().all()
     return db_prices_list
+
+
