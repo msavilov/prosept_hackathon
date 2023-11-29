@@ -5,7 +5,17 @@ from backend.models.models import DealerPrice
 from backend.schemas.dealerprice import DealerPriceScheme
 
 
-
+async def create_dealer_price(
+        new_dealer_price: DealerPriceScheme,
+        session: AsyncSession,
+) -> DealerPrice:
+    """Создание в БД нового товара продавца."""
+    new_dealer_price_data = new_dealer_price.model_dump()
+    db_dealer_price = DealerPrice(**new_dealer_price_data)
+    session.add(db_dealer_price)
+    await session.commit()
+    await session.refresh(db_dealer_price)
+    return db_dealer_price
 
 
 async def get_all_dealer_prices(
