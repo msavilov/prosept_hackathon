@@ -1,0 +1,33 @@
+.product {
+  width: auto;
+  background-color: #f9f9f9;
+}
+
+.product:nth-child(2n) {
+  background-color: #fff;
+}
+.product__item {
+  padding: 5px;
+  border-bottom: solid 3px #dfdfdf;
+}
+
+.product__name {
+  min-width: 250px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(168, 168, 168, 0.2);
+}
+
+.product__name:nth-of-type(2n) {
+  background-color: #fbfbfb;
+}
+
+.product__mark {
+  width: 7px;
+  background-color: #fff0f0;
+  border: 1px solid #b9b9b9;
+}
+
+.product__item_is_marked {
+  background-color: #d3ffd3;
+}
