@@ -1,14 +1,10 @@
 import React from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-<<<<<<< HEAD
 import AppHeader from "./Header/AppHeader";
 //import Main from './Main';
-import Footer from './Footer';
-=======
 //import Header from './Header/Header';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
->>>>>>> e07402c6f9c7c35f8020dab93538eb79b4f447e5
 //import NotFound from './NotFound';
 //import InfoTooltip from './InfoTooltip';
 //import Navigation from './Navigation';
@@ -25,9 +21,7 @@ function App() {
     <Preloader />
   ) : (
     <div className='App page'>
-      <AppHeader>
-        {/*<Navigation />*/}
-      </AppHeader>
+      <AppHeader />
       <Routes>
         <Route path='/' element={<Main />} />
         {/* <Route path='/all-products' element={<All-products />} /> */}
