@@ -1,0 +1,28 @@
+.product {
+  width: auto;
+  background-color: #b9b9b9;
+  border-bottom: solid 2px #b9b9b9;
+}
+
+.product:nth-child(2n) {
+  background-color: #fff;
+}
+.product__item {
+  padding: 5px;
+}
+
+.product__item_is_marked {
+  /* border-bottom: 1px solid #e8fde8; */
+  background-color: #e8fde8;
+}
+.product__name {
+  min-width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product__mark {
+  width: 7px;
+  background-color: #fff0f0;
+  border: 1px solid #b9b9b9;
+}

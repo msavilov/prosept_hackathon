@@ -1,0 +1,20 @@
+.products {
+  display: grid;
+  grid-template-columns: minmax(min-content, 1fr);
+  grid-template-rows: auto;
+}
+
+.products__table {
+  width: 100%;
+}
+
+.products__head {
+  background-color: #808080;
+  font-size: 18px;
+  line-height: 1.21;
+  font-weight: 600;
+}
+
+.products__head-item {
+  padding-left: 15px;
+}
