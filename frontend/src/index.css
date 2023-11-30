@@ -30,7 +30,7 @@
 /* @import url(./components/Preloader.css); */
 
 /*секция header*/
-/* @import url(./components/Header.css); */
+ @import url(./components/Header/Header.css); 
 
 /*footer*/
 @import url(./components/Footer.css);

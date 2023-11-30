@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-//import Header from './Header/Header';
+import AppHeader from "./Header/AppHeader";
 //import Main from './Main';
 import Footer from './Footer';
 //import NotFound from './NotFound';
@@ -19,9 +19,9 @@ function App() {
     <Preloader />
   ) : (
     <div className='App page'>
-      {/* <Header>
-      <Navigation />
-    </Header> */}
+      <AppHeader>
+        {/*<Navigation />*/}
+      </AppHeader>
       <Routes>
         {/* <Route path='/' element={<Main />} /> */}
         {/* <Route path='/all-products' element={<All-products />} /> */}
