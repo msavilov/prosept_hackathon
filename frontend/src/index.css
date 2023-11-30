@@ -33,7 +33,7 @@
 /* @import url(./components/Header.css); */
 
 /*footer*/
-@import url(./components/Footer.css);
+@import url(./components/Footer/Footer.css);
 
 /*Navigation*/
 /* @import url(./components/Navigation.css); */
@@ -49,3 +49,6 @@
 /* @import url(./components/NotFound.css); */
 
 /*Product*/
+@import url(./components/AllProducts/AllProducts.css);
+@import url(./components/DilerProducts/DilerProducts.css);
+@import url(./components/ProductItem/ProductItem.css);

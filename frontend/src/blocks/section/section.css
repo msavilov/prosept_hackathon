@@ -1,9 +1,8 @@
 .section {
   box-sizing: border-box;
   margin: 0 auto;
-  max-width: 1280px;
   width: 100%;
-  padding: 0px 70px;
+  padding: 0px 30px;
 }
 
 @media (max-width: 992px) {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 //import Header from './Header/Header';
-//import Main from './Main';
-import Footer from './Footer';
+import Main from './Main/Main';
+import Footer from './Footer/Footer';
 //import NotFound from './NotFound';
 //import InfoTooltip from './InfoTooltip';
 //import Navigation from './Navigation';
@@ -23,7 +23,7 @@ function App() {
       <Navigation />
     </Header> */}
       <Routes>
-        {/* <Route path='/' element={<Main />} /> */}
+        <Route path='/' element={<Main />} />
         {/* <Route path='/all-products' element={<All-products />} /> */}
         {/* <Route path='/diler-products' element={<Diler-products />} /> */}
         {/* <Route path='/*' element={<NotFound />} /> */}
