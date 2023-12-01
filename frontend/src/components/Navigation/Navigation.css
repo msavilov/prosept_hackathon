@@ -1,26 +1,25 @@
 .button_pars {
-    height: 40px;
+  height: 40px;
 }
 
 .navigation-container {
-    position: relative;
-  }
-  
-  .menu {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #fff; /* Цвет фона меню */
-    border: 1px solid #ccc; /* Граница меню */
-    border-top: none; /* Убрать верхнюю границу, чтобы она не перекрывала кнопку */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Тень меню */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-  }
-  
-  .menu.active {
-    opacity: 1;
-    visibility: visible;
-  }
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  top: 120px;
+  width: 20%;
+  background-color: #e5e5e5; /* Цвет фона меню */
+  border: 1px solid #ccc; /* Граница меню */
+  border-top: none; /* Убрать верхнюю границу, чтобы она не перекрывала кнопку */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Тень меню */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.menu.active {
+  opacity: 1;
+  visibility: visible;
+}
