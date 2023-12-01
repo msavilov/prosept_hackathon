@@ -1,13 +1,17 @@
 import React from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import AppHeader from "./Header/AppHeader";
+//import Main from './Main';
 //import Header from './Header/Header';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
+
+import Statistics from "./Statistics/Statistics";
+import UnLoading from './UnLoading/UnLoading';
 //import NotFound from './NotFound';
 //import InfoTooltip from './InfoTooltip';
-//import Navigation from './Navigation';
 //import ProtectedRoute from './ProtectedRoute';
-//import All-products from './All-products';\
+import Allproducts from './AllProducts/AllProducts';
 //import Diler-products from './Diler-products';
 import Preloader from './Preloader';
 
@@ -19,14 +23,14 @@ function App() {
     <Preloader />
   ) : (
     <div className='App page'>
-      {/* <Header>
-      <Navigation />
-    </Header> */}
+      <AppHeader />
       <Routes>
         <Route path='/' element={<Main />} />
-        {/* <Route path='/all-products' element={<All-products />} /> */}
+        <Route path='/all-products' element={<Allproducts />} /> 
         {/* <Route path='/diler-products' element={<Diler-products />} /> */}
         {/* <Route path='/*' element={<NotFound />} /> */}
+        <Route path="/statistics" element={<Statistics />} />
+        <Route path="/unloading" element={<UnLoading />} />
       </Routes>
       <Footer />
     </div>

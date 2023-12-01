@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:20px;
+  list-style: none;
+}
+
+.header_block {
+  display: flex;
+  align-items: center;
+}
+
+.header_list {
+  margin-right: 10px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header_list_navi {
+  left: 150%;
+  top: 10%;
+  position: relative;
+}
+
+.header_logo {
+  height: 106px;
+  width: 166px;
+}
+
+
+.header_button {
+  height: 40px;
+  width: 120px;
+}
