@@ -1,12 +1,7 @@
 import React from "react";
 
+function Statistics() {
 
-/*мониторинг цен */
-function Statistics () {
-
-    return(
-        
-    )
 }
 
 export default Statistics;

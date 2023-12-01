@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 import styles from "./Header.css"
 import Logo from "../../images/logo.svg";
@@ -14,10 +15,8 @@ function Header() {
 
     return (
         <nav className="header">
+            <img className="header_logo" src={Logo} alt="Logo" />
             <ul className="header_block">
-                <li className="header_list">
-                    <img className="header_logo" src={Logo} alt="Logo" />
-                </li>
                 <li className="header_list">
                     <button className="header_button">Выйти</button>
                 </li>
@@ -31,15 +30,15 @@ function Header() {
                     <Navigation onMenuToggle={handleMenuToggle} />
                     <div className={`menu ${isMenuOpen ? "active" : ""}`}>
                         <ul>
-                            <li>
+                            <li><NavLink to="/all-products">
                                 <button>Товары продавцов</button>
-                            </li>
-                            <li>
+                            </NavLink></li>
+                            <li><NavLink to="/statistics">
                                 <button>Статистика сопоставления</button>
-                            </li>
-                            <li>
+                            </NavLink></li>
+                            <li><NavLink to="/unloading">
                                 <button>Выгрузки</button>
-                            </li>
+                            </NavLink></li>
                             <li>
                                 <button>Управление запросами ВБ</button>
                             </li>
