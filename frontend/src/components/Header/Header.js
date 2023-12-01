@@ -31,10 +31,27 @@ function Header() {
                     <Navigation onMenuToggle={handleMenuToggle} />
                     <div className={`menu ${isMenuOpen ? "active" : ""}`}>
                         <ul>
-                            <li>Управление запросами ВБ</li>
-                            <li>Мониторинг цен</li>
-                            <li>Не сопоставленные товары</li>
-                            <li>Отчет по дилерам</li>
+                            <li>
+                                <button>Товары продавцов</button>
+                            </li>
+                            <li>
+                                <button>Статистика сопоставления</button>
+                            </li>
+                            <li>
+                                <button>Выгрузки</button>
+                            </li>
+                            <li>
+                                <button>Управление запросами ВБ</button>
+                            </li>
+                            <li>
+                                <button>Мониторинг цен</button>
+                            </li>
+                            <li>
+                                <button>Не сопоставленные товары</button>
+                            </li>
+                            <li>
+                                <button>Отчет по дилерам</button>
+                            </li>
                         </ul>
                     </div>
                 </li>
