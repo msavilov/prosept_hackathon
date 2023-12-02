@@ -1,8 +1,10 @@
 .products {
-  display: grid;
-  grid-template-columns: minmax(min-content, 1fr);
-  grid-template-rows: auto;
   padding-bottom: 30px;
+}
+
+.products__main {
+  display: flex;
+  position: relative;
 }
 
 .products__table {
@@ -17,6 +19,7 @@
 }
 
 .products__head {
+  width: 100%;
   background-color: #f2f2f2;
   font-size: 18px;
   line-height: 1.21;
@@ -37,4 +40,8 @@
 
 .products__icon {
   width: 20px;
+}
+
+.product__button-close {
+  background-color: #f2f2f2;
 }

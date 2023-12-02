@@ -1,19 +1,11 @@
 .button-close {
-  /* background: url(../../images/icon_close.svg) no-repeat center; */
-  z-index: 3;
-
-  width: 30px;
-  height: 30px;
+  background: url(../../images/icon_close.png) no-repeat center;
+  z-index: 1;
+  background-size: 10px;
+  border: 1px solid #b9b9b9;
+  width: 26px;
+  height: 26px;
   position: absolute;
-  top: 22px;
+  top: 0;
   right: 0;
-}
-@media (max-width: 576px) {
-  .button-close {
-    min-width: auto;
-    width: 22px;
-    height: 22px;
-    top: 13.55px;
-    right: 13.55px;
-  }
 }

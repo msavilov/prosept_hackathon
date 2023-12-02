@@ -17,10 +17,10 @@ function ProductItem(props) {
       </td>
       <td className='product__item'>
         <button
-          className={`button product__mark /*product__button-open*/ ${
+          className={`button product__mark product__button-open ${
             props.product.is_marked ? 'product__item_is_marked' : ''
-          }  ${props.isMatch ? 'product__button-close' : ''}`}
-          onClick={props.handleMatchClose}
+          }`}
+          onClick={props.handleMatch}
         ></button>
       </td>
     </tr>

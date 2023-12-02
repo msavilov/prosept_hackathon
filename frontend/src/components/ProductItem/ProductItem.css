@@ -25,10 +25,11 @@
   background-size: 13px;
 }
 
-.product__button-close {
-  background: url(../../images/icons_triangle_close.png) no-repeat center;
+/* .product__button-close {
+  background: url(../../images/icon_close.png) no-repeat center;
+  transform: rotate(90deg);
   background-size: 13px;
-}
+} */
 
 .product__mark {
   background-color: #fff0f0;
