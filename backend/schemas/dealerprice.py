@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 
 class DealerPriceScheme(BaseModel):
+    """Pydantic-схема для модели DealerPrice"""
     product_key: int
     price: float
     product_url: str

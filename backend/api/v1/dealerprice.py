@@ -7,12 +7,12 @@ from backend.crud.dealerprice import create_dealer_price, get_all_dealer_prices
 from backend.models.models import DealerPrice
 from backend.schemas.dealerprice import DealerPriceScheme
 
-router = APIRouter(
+router_dealer_price = APIRouter(
     prefix='/dealer_price',
 )
 
 
-@router.get(
+@router_dealer_price.get(
     '/',
 )
 async def get_all_prices(
@@ -23,11 +23,11 @@ async def get_all_prices(
     return dealer_price_list
 
 
-@router.post(
+@router_dealer_price.post(
     '/'
 )
 async def create_new_dealer_price(
-    dealer_price: DealerPriceScheme,
+        dealer_price: DealerPriceScheme,
         session: AsyncSession = Depends(get_async_session),
 ):
     """Представление для создания нового товара дилера."""
