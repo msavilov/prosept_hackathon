@@ -12,7 +12,7 @@ router_product_dealer = APIRouter(
 
 
 @router_product_dealer.get(
-    '/',
+    '/{dealer_price_key}',
 )
 async def get_match_product_dealer(
         dealer_price_key: int,
@@ -35,3 +35,4 @@ async def create_match(
 ):
     """Представление для создания в БД результата матчинга."""
     new_product_dealer = await create_product_dealer(product_dealer, session)
+    return new_product_dealer

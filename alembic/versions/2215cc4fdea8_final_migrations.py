@@ -1,8 +1,8 @@
-"""Main models migration
+"""Final migrations
 
-Revision ID: 6357087707e1
+Revision ID: 2215cc4fdea8
 Revises: 
-Create Date: 2023-12-04 21:01:44.853469
+Create Date: 2023-12-04 22:50:01.454499
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '6357087707e1'
+revision: str = '2215cc4fdea8'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -36,13 +36,13 @@ def upgrade() -> None:
     sa.Column('ozon_name', sa.String(), nullable=True),
     sa.Column('name_1c', sa.String(), nullable=True),
     sa.Column('wb_name', sa.String(), nullable=True),
-    sa.Column('ozon_article', sa.Integer(), nullable=True),
-    sa.Column('wb_article', sa.Integer(), nullable=True),
+    sa.Column('ozon_article', sa.String(), nullable=True),
+    sa.Column('wb_article', sa.String(), nullable=True),
     sa.Column('ym_article', sa.String(), nullable=True),
-    sa.Column('wb_article_td', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('dealerprice',
+    sa.Column('id', sa.Integer(), nullable=True),
     sa.Column('product_key', sa.Integer(), nullable=False),
     sa.Column('price', sa.Float(), nullable=True),
     sa.Column('product_url', sa.String(), nullable=True),

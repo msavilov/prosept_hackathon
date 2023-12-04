@@ -1,6 +1,6 @@
 from datetime import date
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class ProductDealerScheme(BaseModel):
@@ -8,4 +8,6 @@ class ProductDealerScheme(BaseModel):
     key: int
     dealer_id: int
     product_id: int
-    create_dt: date
+    create_dt: date = Field(
+        date.today()
+    )
