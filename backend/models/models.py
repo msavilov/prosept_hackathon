@@ -15,8 +15,8 @@ class Product(Base):
     ozon_name = Column(String)
     name_1c = Column(String)
     wb_name = Column(String)
-    ozon_article = Column(Integer)
-    wb_article = Column(Integer)
+    ozon_article = Column(String)
+    wb_article = Column(String)
     ym_article = Column(String)
     wb_article_td = Column(String)
 
