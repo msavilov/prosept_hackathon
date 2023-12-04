@@ -30,5 +30,5 @@ async def create_dealer_in_db(
         session: AsyncSession = Depends(get_async_session),
 ):
     """Представление для создания нового дилера."""
-    new_dealer = await create_dealer_in_db(dealer, session)
+    new_dealer = await create_dealer(dealer, session)
     return dealer
