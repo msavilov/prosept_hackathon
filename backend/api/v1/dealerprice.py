@@ -20,7 +20,7 @@ router_dealer_price = APIRouter(
 )
 async def get_all_prices(
         session: AsyncSession = Depends(get_async_session),
-):
+) -> list[DealerPriceScheme]:
     """Представление для получения всех товаров продавцов."""
     dealer_price_list = await get_all_dealer_prices(session)
     return dealer_price_list
@@ -33,7 +33,7 @@ async def get_all_prices(
 async def get_dealer_price_by_id_from_db(
         dealer_price_id: int,
         session: AsyncSession = Depends(get_async_session)
-):
+) -> DealerPriceScheme:
     """Представление для получения одного товара дилера по id."""
     dealer_price = await get_dealer_price_by_id(dealer_price_id, session)
     return dealer_price
@@ -44,12 +44,9 @@ async def get_dealer_price_by_id_from_db(
     summary='Создать товар производителя в БД',
 )
 async def create_new_dealer_price(
-        dealer_price: DealerPriceScheme = Body(
-            ...,
-            examples=[request_examples['dealer_price_post']]
-        ),
+        dealer_price: DealerPriceScheme,
         session: AsyncSession = Depends(get_async_session),
-):
+) -> DealerPriceScheme:
     """Представление для создания нового товара дилера."""
     new_dealer_price = await create_dealer_price(dealer_price, session)
     return new_dealer_price
