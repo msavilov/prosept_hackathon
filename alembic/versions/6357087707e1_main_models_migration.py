@@ -1,8 +1,8 @@
-"""Test migration DealerPrice
+"""Main models migration
 
-Revision ID: d6abeff1e63c
+Revision ID: 6357087707e1
 Revises: 
-Create Date: 2023-11-29 15:01:52.502542
+Create Date: 2023-12-04 21:01:44.853469
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'd6abeff1e63c'
+revision: str = '6357087707e1'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -43,23 +43,22 @@ def upgrade() -> None:
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('dealerprice',
-    sa.Column('product_key', sa.Integer(), nullable=True),
+    sa.Column('product_key', sa.Integer(), nullable=False),
     sa.Column('price', sa.Float(), nullable=True),
     sa.Column('product_url', sa.String(), nullable=True),
     sa.Column('product_name', sa.String(), nullable=True),
     sa.Column('date', sa.Date(), nullable=True),
     sa.Column('dealer_id', sa.Integer(), nullable=True),
     sa.Column('is_marked', sa.Boolean(), nullable=True),
-    sa.Column('id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['dealer_id'], ['dealer.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('product_key')
     )
     op.create_table('productdealer',
+    sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('key', sa.Integer(), nullable=True),
     sa.Column('dealer_id', sa.Integer(), nullable=True),
     sa.Column('product_id', sa.Integer(), nullable=True),
     sa.Column('create_dt', sa.Date(), nullable=True),
-    sa.Column('id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['dealer_id'], ['dealer.id'], ),
     sa.ForeignKeyConstraint(['key'], ['dealerprice.product_key'], ),
     sa.ForeignKeyConstraint(['product_id'], ['product.id'], ),
