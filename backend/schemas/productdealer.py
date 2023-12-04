@@ -11,3 +11,15 @@ class ProductDealerScheme(BaseModel):
     create_dt: date = Field(
         date.today()
     )
+
+    class Config:
+        title = 'Схема матчинга "Товар дилера" - "Товар производителя"'
+        json_schema_extra = {
+            'example': {
+                "product_id": 1,
+                "id": 1,
+                "key": 111222,
+                "dealer_id": 1,
+                "create_dt": "2023-12-04",
+            }
+        }
