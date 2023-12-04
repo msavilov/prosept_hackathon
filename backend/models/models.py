@@ -28,6 +28,7 @@ class Dealer(Base):
 
 class DealerPrice(Base):
     """Модель продукта дилера."""
+    id = Column(Integer)
     product_key = Column(Integer, primary_key=True)
     price = Column(Float)
     product_url = Column(String)
