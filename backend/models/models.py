@@ -18,7 +18,6 @@ class Product(Base):
     ozon_article = Column(String)
     wb_article = Column(String)
     ym_article = Column(String)
-    wb_article_td = Column(String)
 
 
 class Dealer(Base):

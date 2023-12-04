@@ -15,4 +15,3 @@ class ProductScheme(BaseModel):
     ozon_article: str
     wb_article: str
     ym_article: str
-    wb_article_td: str
