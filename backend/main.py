@@ -4,7 +4,6 @@ from fastapi.responses import ORJSONResponse
 
 from core import config
 
-
 app = FastAPI(
     title=config.PROJECT_NAME,
     docs_url='/api/openapi',
