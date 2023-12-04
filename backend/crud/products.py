@@ -27,3 +27,17 @@ async def get_all_products(
     )
     db_product_list = db_product_list.scalars().all()
     return db_product_list
+
+
+async def get_product_by_id(
+        product_id: int,
+        session: AsyncSession,
+) -> Product:
+    """Получение из БД одного товара производителя по id"""
+    db_product = await session.execute(
+        select(Product).where(
+            Product.id == product_id
+        )
+    )
+    db_product = db_product.scalars().first()
+    return db_product
