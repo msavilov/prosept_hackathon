@@ -3,8 +3,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.db import get_async_session
-from backend.crud.dealerprice import create_dealer_price, get_all_dealer_prices
-from backend.models.models import DealerPrice
+from backend.crud.dealerprice import create_dealer_price, get_all_dealer_prices, get_dealer_price_by_id
 from backend.schemas.dealerprice import DealerPriceScheme
 
 router_dealer_price = APIRouter(
@@ -21,6 +20,18 @@ async def get_all_prices(
     """Представление для получения всех товаров продавцов."""
     dealer_price_list = await get_all_dealer_prices(session)
     return dealer_price_list
+
+
+@router_dealer_price.get(
+    '/{dealer_price_id}'
+)
+async def get_dealer_price_by_id_from_db(
+        dealer_price_id: int,
+        session: AsyncSession = Depends(get_async_session)
+):
+    """Представление для получения одного товара дилера по id."""
+    dealer_price = await get_dealer_price_by_id(dealer_price_id, session)
+    return dealer_price
 
 
 @router_dealer_price.post(

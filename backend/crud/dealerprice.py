@@ -27,3 +27,16 @@ async def get_all_dealer_prices(
     )
     db_prices_list = db_prices_list.scalars().all()
     return db_prices_list
+
+
+async def get_dealer_price_by_id(
+        dealer_price_id: int,
+        session: AsyncSession,
+) -> DealerPrice:
+    db_dealer_price = await session.execute(
+        select(DealerPrice).where(
+            DealerPrice.id == dealer_price_id
+        )
+    )
+    db_dealer_price = db_dealer_price.scalars().first()
+    return db_dealer_price
