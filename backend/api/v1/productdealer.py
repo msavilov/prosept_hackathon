@@ -1,10 +1,12 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Body, Depends
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.db import get_async_session
 from backend.crud.productdealer import create_product_dealer, get_product_dealers_by_dealer_price_key
 from backend.schemas.productdealer import ProductDealerScheme
+
+from backend.schemas.request_examples import request_examples
 
 router_product_dealer = APIRouter(
     prefix='/product_dealer',
@@ -33,7 +35,10 @@ async def get_match_product_dealer(
     summary='Создать экземпляр матчинга "1 товар дилера - 1 товар производителя',
 )
 async def create_match(
-        product_dealer: ProductDealerScheme,
+        product_dealer: ProductDealerScheme = Body(
+            ...,
+            examples=[request_examples['product_dealer_post']],
+        ),
         session: AsyncSession = Depends(get_async_session),
 ):
     """Представление для создания в БД результата матчинга."""

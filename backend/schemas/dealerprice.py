@@ -16,15 +16,3 @@ class DealerPriceScheme(BaseModel):
 
     class Config:
         title = 'Схема товара дилера'
-        json_schema_extra = {
-            'example': {
-                "id": 1,
-                "product_url": "https://dealer.ru/goods/1/",
-                "date": "2023-07-11",
-                "is_marked": False,
-                "product_key": 111222,
-                "product_name": "Антисептик",
-                "price": 195.95,
-                "dealer_id": 1
-            }
-        }

@@ -1,10 +1,12 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Body, Depends
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.db import get_async_session
 from backend.crud.products import create_product, get_all_products
 from backend.schemas.products import ProductScheme
+
+from backend.schemas.request_examples import request_examples
 
 router_products = APIRouter(
     prefix='/products',
@@ -29,7 +31,10 @@ async def get_all_products_from_db(
     summary='Создать товар производителя в БД',
 )
 async def create_product_in_db(
-        product: ProductScheme,
+        product: ProductScheme = Body(
+            ...,
+            examples=[request_examples['products_post']]
+        ),
         session: AsyncSession = Depends(get_async_session),
 ):
     """Представление для создания нового продукта производителя."""

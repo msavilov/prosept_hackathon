@@ -8,9 +8,3 @@ class DealerScheme(BaseModel):
 
     class Config:
         title = 'Схема дилера'
-        json_schema_extra = {
-            'example': {
-                'id': 1,
-                'name': 'Akson'
-            }
-        }

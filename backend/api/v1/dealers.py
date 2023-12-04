@@ -1,10 +1,12 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Body, Depends
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.db import get_async_session
 from backend.crud.dealers import create_dealer, get_all_dealers
 from backend.schemas.dealers import DealerScheme
+
+from backend.schemas.request_examples import request_examples
 
 router_dealers = APIRouter(
     prefix='/dealers',
@@ -29,7 +31,10 @@ async def get_all_dealers_from_db(
     summary='Создать дилера в БД',
 )
 async def create_dealer_in_db(
-        dealer: DealerScheme,
+        dealer: DealerScheme = Body(
+            ...,
+            examples=[request_examples['dealers_post']],
+        ),
         session: AsyncSession = Depends(get_async_session),
 ):
     """Представление для создания нового дилера."""
