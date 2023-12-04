@@ -8,11 +8,13 @@ from backend.schemas.products import ProductScheme
 
 router_products = APIRouter(
     prefix='/products',
+    tags=['/products - получение/создание товаров производителя'],
 )
 
 
 @router_products.get(
     '/',
+    summary='Получить список всех товаров производителя из БД'
 )
 async def get_all_products_from_db(
         session: AsyncSession = Depends(get_async_session),
@@ -24,6 +26,7 @@ async def get_all_products_from_db(
 
 @router_products.post(
     '/',
+    summary='Создать товар производителя в БД',
 )
 async def create_product_in_db(
         product: ProductScheme,

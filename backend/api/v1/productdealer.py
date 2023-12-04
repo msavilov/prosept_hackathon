@@ -8,11 +8,13 @@ from backend.schemas.productdealer import ProductDealerScheme
 
 router_product_dealer = APIRouter(
     prefix='/product_dealer',
+    tags=['/product_dealer - получение/создание результатов матчига "товар дилера" - "товары производителя"'],
 )
 
 
 @router_product_dealer.get(
     '/{dealer_price_key}',
+    summary='Получить список всех матчигов товара дилера с товарами производителя ',
 )
 async def get_match_product_dealer(
         dealer_price_key: int,
@@ -28,6 +30,7 @@ async def get_match_product_dealer(
 
 @router_product_dealer.post(
     '/',
+    summary='Создать экземпляр матчинга "1 товар дилера - 1 товар производителя',
 )
 async def create_match(
         product_dealer: ProductDealerScheme,

@@ -8,11 +8,13 @@ from backend.schemas.dealers import DealerScheme
 
 router_dealers = APIRouter(
     prefix='/dealers',
+    tags=['/dealers - получение/создание дилеров'],
 )
 
 
 @router_dealers.get(
     '/',
+    summary='Получить список всех дилеров из БД',
 )
 async def get_all_dealers_from_db(
         session: AsyncSession = Depends(get_async_session)
@@ -24,6 +26,7 @@ async def get_all_dealers_from_db(
 
 @router_dealers.post(
     '/',
+    summary='Создать дилера в БД',
 )
 async def create_dealer_in_db(
         dealer: DealerScheme,
@@ -31,4 +34,4 @@ async def create_dealer_in_db(
 ):
     """Представление для создания нового дилера."""
     new_dealer = await create_dealer(dealer, session)
-    return dealer
+    return new_dealer

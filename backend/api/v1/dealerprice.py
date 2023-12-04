@@ -8,11 +8,13 @@ from backend.schemas.dealerprice import DealerPriceScheme
 
 router_dealer_price = APIRouter(
     prefix='/dealer_price',
+    tags=['/dealer_price - получить/создать товары дилера (по ТЗ полученные из парсера'],
 )
 
 
 @router_dealer_price.get(
     '/',
+    summary='Получить список всех товаров дилеров из БД',
 )
 async def get_all_prices(
         session: AsyncSession = Depends(get_async_session),
@@ -23,7 +25,8 @@ async def get_all_prices(
 
 
 @router_dealer_price.get(
-    '/{dealer_price_id}'
+    '/{dealer_price_id}',
+    summary='Получить один товар дилера из БД по id',
 )
 async def get_dealer_price_by_id_from_db(
         dealer_price_id: int,
@@ -35,7 +38,8 @@ async def get_dealer_price_by_id_from_db(
 
 
 @router_dealer_price.post(
-    '/'
+    '/',
+    summary='Создать товар производителя в БД',
 )
 async def create_new_dealer_price(
         dealer_price: DealerPriceScheme,
