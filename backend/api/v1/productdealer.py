@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.db import get_async_session
-from backend.crud.productdealer import create_product_dealer, get_product_dealers_by_dealer_price_key
+from backend.crud.productdealer import create_product_dealer, get_products_by_product_dealer, get_product_dealers_by_dealer_price_key
 from backend.schemas.productdealer import ProductDealerScheme
 from backend.schemas.products import ProductScheme
 
@@ -27,6 +27,23 @@ async def get_match_product_dealer(
         session,
     )
     return product_dealer_list
+
+
+@router_product_dealer.get(
+    '/{dealer_price_key}/get_products',
+    summary='Получить все похожие товары производителя на товар дилера'
+)
+async def get_products_by_key(
+        dealer_price_key: int,
+        session: AsyncSession = Depends(get_async_session)
+):
+    product_dealer_list = await get_products_by_product_dealer(
+        dealer_price_key,
+        session
+    )
+    print(product_dealer_list)
+    return product_dealer_list
+
 
 
 @router_product_dealer.post(
