@@ -3,7 +3,8 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.db import get_async_session
-from backend.crud.productdealer import create_product_dealer, get_products_by_product_dealer, get_product_dealers_by_dealer_price_key
+from backend.crud.dealerprice import get_dealer_price_by_key
+from backend.crud.productdealer import create_product_dealer, get_product_dealers_by_dealer_price_key, get_products_by_list_id, get_all_product_dealers
 from backend.schemas.productdealer import ProductDealerScheme
 from backend.schemas.products import ProductScheme
 
@@ -14,34 +15,34 @@ router_product_dealer = APIRouter(
 
 
 @router_product_dealer.get(
-    '/{dealer_price_key}',
-    summary='Получить список всех матчингов "товар дилера" - "товар производителя"',
+    '/',
+    summary='Получить список всех созданных матчингов "товар дилера" - "товар производителя"',
 )
-async def get_match_product_dealer(
-        dealer_price_key: int,
+async def get_all_product_dealers_from_db(
         session: AsyncSession = Depends(get_async_session),
 ) -> list[ProductDealerScheme]:
     """Представление для получения результата матчигов по ключу товара дилера."""
-    product_dealer_list = await get_product_dealers_by_dealer_price_key(
-        dealer_price_key,
-        session,
-    )
+    product_dealer_list = await get_all_product_dealers(session)
     return product_dealer_list
 
 
 @router_product_dealer.get(
-    '/{dealer_price_key}/get_products',
-    summary='Получить все похожие товары производителя на товар дилера'
+    '/{dealer_price_product_key}',
+    summary='Получить из ML список совпадающих продуктов',
 )
-async def get_products_by_prod_dealer(
-        dealer_price_key: int,
+async def get_products_from_ml(
+        dealer_price_product_key: int,
         session: AsyncSession = Depends(get_async_session)
 ) -> list[ProductScheme]:
-    product_dealer_list = await get_products_by_product_dealer(
-        dealer_price_key,
-        session
-    )
-    return product_dealer_list
+    """Представление для получения из ML подходящих продуктов."""
+    # Получаем товар дилера по dealer_price_key
+    dealer_price = await get_dealer_price_by_key(dealer_price_product_key, session)
+    # Здесь полученный dealer_price передается в ML.
+    # В ответ получается список id подходящих товаров производителя
+    products_id_list = [1, 2, 3, 4, 5]
+    # Получаются из базы
+    products = await get_products_by_list_id(products_id_list, session)
+    return products
 
 
 @router_product_dealer.post(

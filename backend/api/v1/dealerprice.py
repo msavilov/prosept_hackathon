@@ -3,7 +3,7 @@ from fastapi import APIRouter, Body, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.db import get_async_session
-from backend.crud.dealerprice import create_dealer_price, get_all_dealer_prices, get_dealer_price_by_id
+from backend.crud.dealerprice import create_dealer_price, get_all_dealer_prices, get_dealer_price_by_id, update_dealer_price
 from backend.schemas.dealerprice import DealerPriceScheme
 
 from backend.schemas.request_examples import request_examples
@@ -41,7 +41,7 @@ async def get_dealer_price_by_id_from_db(
 
 @router_dealer_price.post(
     '/',
-    summary='Создать товар производителя в БД',
+    summary='Создать товар дилера в БД',
 )
 async def create_new_dealer_price(
         dealer_price: DealerPriceScheme,
@@ -50,3 +50,21 @@ async def create_new_dealer_price(
     """Представление для создания нового товара дилера."""
     new_dealer_price = await create_dealer_price(dealer_price, session)
     return new_dealer_price
+
+
+@router_dealer_price.patch(
+    '/{dealer_price_id}',
+    summary='Обновить товар дилера в БД',
+)
+async def partually_update_dealer_price(
+        dealer_price_id: int,
+        obj_in: DealerPriceScheme,
+        session: AsyncSession = Depends(get_async_session)
+) -> DealerPriceScheme:
+    dealer_price = await get_dealer_price_by_id(dealer_price_id, session)
+    dealer_price = await update_dealer_price(
+        dealer_price,
+        obj_in,
+        session
+    )
+    return dealer_price

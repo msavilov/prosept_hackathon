@@ -7,17 +7,17 @@ class Product(Base):
     """Модель продукта производителя."""
     id = Column(Integer, primary_key=True)
     article = Column(String)
-    ean_13 = Column(Integer)
+    ean_13 = Column(Integer, nullable=True)
     name = Column(String)
     cost = Column(Float)
     recommended_price = Column(Float)
-    category_id = Column(Integer)
-    ozon_name = Column(String)
-    name_1c = Column(String)
-    wb_name = Column(String)
-    ozon_article = Column(String)
-    wb_article = Column(String)
-    ym_article = Column(String)
+    category_id = Column(Integer, nullable=True)
+    ozon_name = Column(String, nullable=True)
+    name_1c = Column(String, nullable=True)
+    wb_name = Column(String, nullable=True)
+    ozon_article = Column(String, nullable=True)
+    wb_article = Column(String, nullable=True)
+    ym_article = Column(String, nullable=True)
 
 
 class Dealer(Base):

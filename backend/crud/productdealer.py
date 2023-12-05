@@ -20,37 +20,36 @@ async def create_product_dealer(
 
 
 async def get_product_dealers_by_dealer_price_key(
-        dealer_price_key: int,
+        dealer_price_product_key: int,
         session: AsyncSession,
 ) -> list[ProductDealer]:
     db_product_dealer_list = await session.execute(
         select(ProductDealer).where(
-            ProductDealer.key == dealer_price_key
+            ProductDealer.key == dealer_price_product_key
         )
     )
     db_product_dealer_list = db_product_dealer_list.scalars().all()
     return db_product_dealer_list
 
 
-async def get_products_by_product_dealer(
-        dealer_price_key: int,
+async def get_products_by_list_id(
+        list_id: list[int],
         session: AsyncSession,
-) -> list[ProductDealer]:
-    db_product_dealer_list = await session.execute(
-        select(ProductDealer).where(
-            ProductDealer.key == dealer_price_key
-        )
-    )
-    db_product_dealer_list = db_product_dealer_list.scalars().all()
-    products_ids = []
-    # Получаем список idшников товаров
-    for product_dealer in db_product_dealer_list:
-        products_ids.append(product_dealer.product_id)
-    # Достаем из БД все товары производителя с id из списка
+) -> list[Product]:
     db_product_list = await session.execute(
         select(Product).where(
-            Product.id.in_(products_ids)
+            Product.id.in_(list_id)
         )
     )
     db_product_list = db_product_list.scalars().all()
     return db_product_list
+
+
+async def get_all_product_dealers(
+        session: AsyncSession,
+) -> list[ProductDealer]:
+    db_product_dealer_list = await session.execute(
+        select(ProductDealer)
+    )
+    db_product_dealer_list = db_product_dealer_list.scalars().all()
+    return db_product_dealer_list
