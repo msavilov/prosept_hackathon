@@ -33,17 +33,15 @@ async def get_match_product_dealer(
     '/{dealer_price_key}/get_products',
     summary='Получить все похожие товары производителя на товар дилера'
 )
-async def get_products_by_key(
+async def get_products_by_prod_dealer(
         dealer_price_key: int,
         session: AsyncSession = Depends(get_async_session)
-):
+) -> list[ProductScheme]:
     product_dealer_list = await get_products_by_product_dealer(
         dealer_price_key,
         session
     )
-    print(product_dealer_list)
     return product_dealer_list
-
 
 
 @router_product_dealer.post(
