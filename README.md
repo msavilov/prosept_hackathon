@@ -38,7 +38,7 @@ source venv\bit\activate
 
 ### 4. В активированном виртуальном окружении необходимо обновить менеджер пакетов pip и установить зависимости:
 ```bash
-python -m pip install --upgrade
+python -m pip install --upgrade pip
 pip install -r backend\requirements.txt
 ```
 
