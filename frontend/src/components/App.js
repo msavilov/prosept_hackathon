@@ -11,7 +11,7 @@ import UnLoading from './UnLoading/UnLoading';
 //import NotFound from './NotFound';
 //import InfoTooltip from './InfoTooltip';
 //import ProtectedRoute from './ProtectedRoute';
-import Allproducts from './AllProducts/AllProducts';
+import Allproducts from './DilerProducts/AllProducts';
 //import Diler-products from './Diler-products';
 import Preloader from './Preloader';
 
