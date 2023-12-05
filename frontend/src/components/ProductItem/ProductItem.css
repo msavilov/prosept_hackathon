@@ -12,9 +12,7 @@
 }
 
 .product__name {
-  min-width: 250px;
-  display: flex;
-  justify-content: space-between;
+  /* min-width: 200px; */
   background-color: rgba(168, 168, 168, 0.2);
 }
 
@@ -22,8 +20,18 @@
   background-color: #fbfbfb;
 }
 
+.product__button-open:hover {
+  background: url(../../images/icons_triangle_open.png) no-repeat center;
+  background-size: 13px;
+}
+
+/* .product__button-close {
+  background: url(../../images/icon_close.png) no-repeat center;
+  transform: rotate(90deg);
+  background-size: 13px;
+} */
+
 .product__mark {
-  width: 7px;
   background-color: #fff0f0;
   border: 1px solid #b9b9b9;
 }

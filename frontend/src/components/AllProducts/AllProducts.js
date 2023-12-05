@@ -1,7 +1,20 @@
 import React from 'react';
 import ProductItem from '../ProductItem/ProductItem';
+import icon_match from '../../images/icon_match.png';
 
 function AllProducts(props) {
+  // States
+  const [isMatch, setIsMatch] = React.useState(false);
+  console.log(isMatch);
+
+  function handleMatch() {
+    setIsMatch(true);
+  }
+
+  function handleMatchClose() {
+    setIsMatch(false);
+  }
+
   const products = [
     {
       product_key: 546227,
@@ -51,24 +64,58 @@ function AllProducts(props) {
   };
 
   let res = ProductsList(products).map(product => (
-    <ProductItem key={product.id} product={product} />
+    <ProductItem
+      key={product.id}
+      product={product}
+      isMatch={isMatch}
+      handleMatch={handleMatch}
+      handleMatchClose={handleMatchClose}
+    />
   ));
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
       <h1 className='section-title products__title'>Товары продавцов</h1>
-      <table className='products__table'>
-        <thead className='text products__head'>
-          <tr>
-            <td className='products__head-item'>Имя</td>
-            <td className='products__head-item'>product_key</td>
-            <td className='products__head-item'>Дилер</td>
-            <td className='products__head-item'>Цена</td>
-            <td className='products__head-item'>Дата</td>
-          </tr>
-        </thead>
-        <tbody>{res}</tbody>
-      </table>
+      <div className='products__main'>
+        <table className={`products__table ${isMatch ? 'products__table_match' : ''}`}>
+          <thead className='text products__head'>
+            {isMatch ? (
+              <tr>
+                <td className='products__head-item'>Имя</td>
+                <td className='products__head-item products__head-icon'>
+                  <img
+                    className='products__icon'
+                    src={icon_match}
+                    alt='Иконка соотношения товаров'
+                  />
+                </td>
+              </tr>
+            ) : (
+              <tr>
+                <td className='products__head-item'>Имя</td>
+                <td className='products__head-item products__head-icon'>
+                  <img
+                    className='products__icon'
+                    src={icon_match}
+                    alt='Иконка соотношения товаров'
+                  />
+                </td>
+                <td className='products__head-item'>product_key</td>
+                <td className='products__head-item'>Дилер</td>
+                <td className='products__head-item'>Цена</td>
+                <td className='products__head-item'>Дата</td>
+              </tr>
+            )}
+          </thead>
+          <tbody>{res}</tbody>
+        </table>
+        {isMatch && (
+          <button
+            className='button button-close product__button-close '
+            onClick={handleMatchClose}
+          ></button>
+        )}
+      </div>
     </section>
   );
 }
