@@ -13,8 +13,11 @@ function Pagination(props) {
   return (
     <div className='pagination'>
       <h2 className='text pagination__title'>
-        Showing {props.firstProductIndex + 1} to {props.lastProductIndex} of {props.totalProducts}{' '}
-        entries
+        Showing {props.firstProductIndex + 1} to{' '}
+        {props.currentPage * props.views > props.totalProducts
+          ? props.totalProducts
+          : props.currentPage * props.views}{' '}
+        of {props.totalProducts} entries
       </h2>
       <ul className='pagination__items'>
         <li className='pagination__item'>

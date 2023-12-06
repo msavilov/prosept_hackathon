@@ -16,18 +16,18 @@ import Allproducts from './AllProducts/AllProducts';
 import Preloader from './Preloader';
 
 function App() {
-  // Стейты
-  const [isLoading, setIsLoading] = React.useState(false);
+  // States
+  const [loading, setLoading] = React.useState(false);
 
-  return isLoading ? (
+  return loading ? (
     <Preloader />
   ) : (
     <div className='App page'>
       <AppHeader />
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='/all-products' element={<Allproducts />} />
-        {/* <Route path='/diler-products' element={<Diler-products />} /> */}
+        <Route path='/all-products' element={<Allproducts setLoading={setLoading} />} />
+        {/* <Route path='/diler-products' element={<DilerProducts />} /> */}
         {/* <Route path='/*' element={<NotFound />} /> */}
         <Route path='/statistics' element={<Statistics />} />
         <Route path='/unloading' element={<UnLoading />} />
