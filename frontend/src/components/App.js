@@ -13,7 +13,7 @@ import UnLoading from './UnLoading/UnLoading';
 //import ProtectedRoute from './ProtectedRoute';
 import Allproducts from './AllProducts/AllProducts';
 //import DilerProducts from './DilerProducts';
-import Preloader from './Preloader';
+import Preloader from './Preloader/Preloader';
 
 function App() {
   // States
