@@ -1,12 +1,19 @@
 import React from 'react';
 import ProductItem from '../ProductItem/ProductItem';
+import Pagination from '../Pagination/Pagination';
 import icon_match from '../../images/icon_match.png';
 
 function AllProducts(props) {
   // States
+  const [loading, setLoading] = React.useState(false);
   const [isMatch, setIsMatch] = React.useState(false);
   console.log(isMatch);
+  const [productsList, setProductsList] = React.useState([]);
+  const [views, setViews] = React.useState(10);
+  console.log(views);
+  const [currentPage] = React.useState(1);
 
+  // Match open & close
   function handleMatch() {
     setIsMatch(true);
   }
@@ -47,23 +54,164 @@ function AllProducts(props) {
       product_url:
         'https://akson.ru//p/kontsentrat_prosept_multipower_dlya_mytya_polov_tsitrus_1l/',
       is_marked: true
+    },
+    {
+      product_key: 546227,
+      product_name: 'Prosept Universal Spray, 300',
+      dealer_id: 2,
+      id: 5,
+      date: '2022-08-03',
+      price: 233.0,
+      product_url: 'https://akson.ru//p/sredstvo_universalnoe_prosept_universal_spray_500ml/',
+      is_marked: false
+    },
+    {
+      product_key: 546408,
+      product_name: 'Prosept Universal Spray, 500',
+      dealer_id: 2,
+      id: 6,
+      date: '2022-08-03',
+      price: 175.0,
+      product_url:
+        'https://akson.ru//p/kontsentrat_prosept_multipower_dlya_mytya_polov_tsitrus_1l/',
+      is_marked: false
+    },
+    {
+      product_key: 546409,
+      product_name: 'Prosept Universal Spray, 1000',
+      dealer_id: 2,
+      id: 7,
+      date: '2022-08-03',
+      price: 175.0,
+      product_url:
+        'https://akson.ru//p/kontsentrat_prosept_multipower_dlya_mytya_polov_tsitrus_1l/',
+      is_marked: true
+    },
+    {
+      product_key: 546227,
+      product_name: 'Prosept Universal Spray, 300',
+      dealer_id: 2,
+      id: 8,
+      date: '2022-08-03',
+      price: 233.0,
+      product_url: 'https://akson.ru//p/sredstvo_universalnoe_prosept_universal_spray_500ml/',
+      is_marked: true
+    },
+    {
+      product_key: 546408,
+      product_name: 'Prosept Universal Spray, 500',
+      dealer_id: 2,
+      id: 9,
+      date: '2022-08-03',
+      price: 175.0,
+      product_url:
+        'https://akson.ru//p/kontsentrat_prosept_multipower_dlya_mytya_polov_tsitrus_1l/',
+      is_marked: true
+    },
+    {
+      product_key: 546409,
+      product_name: 'Prosept Universal Spray, 1000',
+      dealer_id: 2,
+      id: 9,
+      date: '2022-08-03',
+      price: 175.0,
+      product_url:
+        'https://akson.ru//p/kontsentrat_prosept_multipower_dlya_mytya_polov_tsitrus_1l/',
+      is_marked: false
+    },
+    {
+      product_key: 546227,
+      product_name: 'Prosept Universal Spray, 300',
+      dealer_id: 2,
+      id: 10,
+      date: '2022-08-03',
+      price: 233.0,
+      product_url: 'https://akson.ru//p/sredstvo_universalnoe_prosept_universal_spray_500ml/',
+      is_marked: true
+    },
+    {
+      product_key: 546408,
+      product_name: 'Prosept Universal Spray, 500',
+      dealer_id: 2,
+      id: 11,
+      date: '2022-08-03',
+      price: 175.0,
+      product_url:
+        'https://akson.ru//p/kontsentrat_prosept_multipower_dlya_mytya_polov_tsitrus_1l/',
+      is_marked: false
+    },
+    {
+      product_key: 546409,
+      product_name: 'Prosept Universal Spray, 1000',
+      dealer_id: 2,
+      id: 12,
+      date: '2022-08-03',
+      price: 175.0,
+      product_url:
+        'https://akson.ru//p/kontsentrat_prosept_multipower_dlya_mytya_polov_tsitrus_1l/',
+      is_marked: true
+    },
+    {
+      product_key: 546227,
+      product_name: 'Prosept Universal Spray, 300',
+      dealer_id: 2,
+      id: 13,
+      date: '2022-08-03',
+      price: 233.0,
+      product_url: 'https://akson.ru//p/sredstvo_universalnoe_prosept_universal_spray_500ml/',
+      is_marked: false
+    },
+    {
+      product_key: 546408,
+      product_name: 'Prosept Universal Spray, 500',
+      dealer_id: 2,
+      id: 14,
+      date: '2022-08-03',
+      price: 175.0,
+      product_url:
+        'https://akson.ru//p/kontsentrat_prosept_multipower_dlya_mytya_polov_tsitrus_1l/',
+      is_marked: true
+    },
+    {
+      product_key: 546409,
+      product_name: 'Prosept Universal Spray, 1000',
+      dealer_id: 2,
+      id: 15,
+      date: '2022-08-03',
+      price: 1705.0,
+      product_url:
+        'https://akson.ru//p/kontsentrat_prosept_multipower_dlya_mytya_polov_tsitrus_1l/',
+      is_marked: true
     }
   ];
 
-  const views = 10;
+  // value for Views
+  function handleViewsChange(e) {
+    setViews(e.target.value);
+  }
 
-  // Расчет количества строк отображаемых в таблице
-  const ProductsList = products => {
-    if (products !== null) {
-      if (products.length >= views) {
-        return products.slice(0, views);
-      } else {
-        return products;
+  // products index
+  const lastProductIndex = currentPage * views;
+  const firstProductIndex = lastProductIndex - views;
+  // const currentProducts = products.slice(firstProductIndex, lastProductIndex);
+
+  // products for table
+  React.useEffect(() => {
+    setLoading(true);
+    setProductsList(() => {
+      if (products !== null) {
+        if (products.length >= views) {
+          return products.slice(firstProductIndex, lastProductIndex);
+        } else {
+          return products;
+        }
       }
-    }
-  };
+    });
+    setLoading(false);
+  }, [views]);
 
-  let res = ProductsList(products).map(product => (
+  // res
+  let res = productsList.map(product => (
     <ProductItem
       key={product.id}
       product={product}
@@ -76,6 +224,22 @@ function AllProducts(props) {
   return (
     <section className='section products' aria-label='Таблица товаров'>
       <h1 className='section-title products__title'>Товары продавцов</h1>
+      <div className='products__optoins'>
+        <label className='text products__label' for='views'>
+          Show:
+        </label>
+        <input
+          className='text products__input'
+          type='number'
+          id='views'
+          name='views'
+          min='10'
+          max='500'
+          step='5'
+          value={views}
+          onChange={handleViewsChange}
+        />
+      </div>
       <div className='products__main'>
         <table className={`products__table ${isMatch ? 'products__table_match' : ''}`}>
           <thead className='text products__head'>
@@ -116,6 +280,12 @@ function AllProducts(props) {
           ></button>
         )}
       </div>
+      <Pagination
+        views={views}
+        totalProducts={products.length}
+        firstProductIndex={firstProductIndex}
+        lastProductIndex={lastProductIndex}
+      ></Pagination>
     </section>
   );
 }

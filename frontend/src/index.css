@@ -1,4 +1,4 @@
-@import url(./vendor/normalize.css);
+/* @import url(./vendor/normalize.css); */
 
 /*fonts*/
 @import url(./vendor/fonts.css);
@@ -30,14 +30,15 @@
 /* @import url(./components/Preloader.css); */
 
 /*секция header*/
- @import url(./components/Header/AppHeader.css);
- @import url(./components/Header/Header.css); 
+@import url(./components/Header/AppHeader.css);
+@import url(./components/Header/Header.css);
 
 /*footer*/
 @import url(./components/Footer/Footer.css);
 
 /*Navigation*/
- @import url(./components/Navigation/Navigation.css); 
+@import url(./components/Navigation/Navigation.css);
+@import url(./components/Pagination/Pagination.css);
 
 /*Main*/
 /* @import url(./components/Main.css); */

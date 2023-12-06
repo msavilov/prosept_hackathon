@@ -1,0 +1,21 @@
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagination__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 2px;
+  color: #000;
+}
+
+.pagination__button:active {
+  border: 1px solid #575757;
+  background-color: #c5c5c5;
+  color: #000;
+}
