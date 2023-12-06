@@ -13,6 +13,7 @@ function AllProducts(props) {
   const [views, setViews] = React.useState(10);
   console.log(views);
   const [currentPage, setCurrentPage] = React.useState(1);
+  console.log(currentPage);
 
   // Match open & close
   function handleMatch() {
@@ -41,7 +42,13 @@ function AllProducts(props) {
   React.useEffect(() => {
     props.setLoading(true);
     const firstProductIndex = currentPage * views - views;
-    const lastProductIndex = firstProductIndex + views;
+    console.log(firstProductIndex);
+    const lastProductIndex =
+      currentPage * views > products.length ? products.length : currentPage * views;
+    console.log(lastProductIndex);
+    if (firstProductIndex >= products.length) {
+      setCurrentPage(1);
+    }
     setProductsList(() => {
       if (products !== null) {
         if (products.length >= views) {
@@ -49,6 +56,8 @@ function AllProducts(props) {
         } else {
           return products;
         }
+      } else {
+        setCurrentPage(1);
       }
     });
     props.setLoading(false);

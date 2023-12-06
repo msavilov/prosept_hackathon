@@ -4,9 +4,7 @@ import icon_match from '../../images/icon_match.png';
 
 function ProductsList(props) {
   // States
-  console.log(props.isMatch);
-
-  console.log(props.views);
+  console.log(props.productsList);
 
   // res
   let res = props.productsList.map(product => (
@@ -43,7 +41,18 @@ function ProductsList(props) {
             </tr>
           )}
         </thead>
-        <tbody>{res}</tbody>
+        <tbody>
+          {/* {res} */}
+          {props.productsList.map(product => (
+            <ProductItem
+              key={product.id}
+              product={product}
+              isMatch={props.isMatch}
+              handleMatch={props.handleMatch}
+              handleMatchClose={props.handleMatchClose}
+            />
+          ))}
+        </tbody>
       </table>
       {props.isMatch && (
         <button
