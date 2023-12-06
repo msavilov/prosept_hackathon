@@ -28,7 +28,7 @@ python -m venv venv
 .\venv\Script\activate
 
 # Если Linux или Mac
-source venv\bit\activate
+source venv\bin\activate
 ```
 
 В командной строке будет отображено что-то типа:
