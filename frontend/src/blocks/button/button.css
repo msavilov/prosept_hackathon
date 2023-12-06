@@ -23,4 +23,5 @@
 .button:disabled:hover {
   background-color: #f8f8f8;
   opacity: 1;
+  cursor: auto;
 }

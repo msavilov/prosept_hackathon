@@ -1,6 +1,6 @@
 import React from 'react';
 import AllProducts from '../AllProducts/AllProducts';
-import DilerProducts from '../DilerProducts/DilerProducts';
+// import DilerProducts from '../DilerProducts/DilerProducts';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
 function Main(props) {
@@ -9,7 +9,7 @@ function Main(props) {
   return (
     <main>
       {location.pathname === '/' && <AllProducts />}
-      {location.pathname === '/diler-products' && <DilerProducts />}
+      {/* {location.pathname === '/diler-products' && <DilerProducts />} */}
     </main>
   );
 }
