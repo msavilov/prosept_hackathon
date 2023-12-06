@@ -1,5 +1,5 @@
 import React from 'react';
-import AllProducts from '../DilerProducts/AllProducts';
+import AllProducts from '../AllProducts/AllProducts';
 // import DilerProducts from '../DilerProducts/DilerProducts';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 

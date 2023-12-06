@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import ProductItem from '../ProductItem/ProductItem';
 import Pagination from '../Pagination/Pagination';
 import icon_match from '../../images/icon_match.png';
@@ -11,7 +12,7 @@ function AllProducts(props) {
   const [productsList, setProductsList] = React.useState([]);
   const [views, setViews] = React.useState(10);
   console.log(views);
-  const [currentPage] = React.useState(1);
+  const [currentPage, setCurrentPage] = React.useState(1);
 
   // Match open & close
   function handleMatch() {
@@ -194,21 +195,26 @@ function AllProducts(props) {
   const lastProductIndex = currentPage * views;
   const firstProductIndex = lastProductIndex - views;
   // const currentProducts = products.slice(firstProductIndex, lastProductIndex);
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const prevPage = () => setCurrentPage(prev => prev - 1);
+  const nextPage = () => setCurrentPage(prev => prev + 1);
 
   // products for table
   React.useEffect(() => {
     setLoading(true);
+    const lastProductIndex1 = currentPage * views;
+    const firstProductIndex1 = lastProductIndex - views;
     setProductsList(() => {
       if (products !== null) {
         if (products.length >= views) {
-          return products.slice(firstProductIndex, lastProductIndex);
+          return products.slice(firstProductIndex1, lastProductIndex1);
         } else {
           return products;
         }
       }
     });
     setLoading(false);
-  }, [views]);
+  }, [views, currentPage]);
 
   // res
   let res = productsList.map(product => (
@@ -282,10 +288,14 @@ function AllProducts(props) {
       </div>
       <Pagination
         views={views}
+        currentPage={currentPage}
         totalProducts={products.length}
         firstProductIndex={firstProductIndex}
         lastProductIndex={lastProductIndex}
-      ></Pagination>
+        paginate={paginate}
+        prevPage={prevPage}
+        nextPage={nextPage}
+      />
     </section>
   );
 }
