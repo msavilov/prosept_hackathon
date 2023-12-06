@@ -3,6 +3,7 @@ import React from 'react';
 import products from '../Products/Products';
 import ProductsList from '../ProductsList/ProductsList';
 import ProductItem from '../ProductItem/ProductItem';
+import ProductDetails from '../Products/ProductDetails';
 import Pagination from '../Pagination/Pagination';
 
 function AllProducts(props) {
@@ -30,6 +31,8 @@ function AllProducts(props) {
   // products index
   const lastProductIndex = currentPage * views;
   const firstProductIndex = lastProductIndex - views;
+
+  // const currentProducts = products.slice(firstProductIndex, lastProductIndex);
   const paginate = pageNumber => setCurrentPage(pageNumber);
   const prevPage = () => setCurrentPage(prev => prev - 1);
   const nextPage = () => setCurrentPage(prev => prev + 1);
