@@ -92,6 +92,9 @@ function AllProducts(props) {
           handleMatchClose={handleMatchClose}
         />
       </div>
+      <div>
+        <ProductDetails />
+      </div>
       <Pagination
         views={views}
         currentPage={currentPage}
