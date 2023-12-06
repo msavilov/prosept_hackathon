@@ -1,15 +1,44 @@
 //сведения о продуктах
-
 import React from 'react';
 
-const ProductDetails = ({ selectedProduct }) => {
+function ProductDetails() {
+
+  // Match open & close
+  function handleMatch() {
+    setIsMatch(true);
+  }
+
+  function handleMatchClose() {
+    setIsMatch(false);
+  }
+  const [isMatch, setIsMatch] = React.useState(false);
+  console.log(isMatch);
+
   return (
-    <div className='products__details'>
-      <img src={selectedProduct.product_url} alt={selectedProduct.product_name} />
-      <h2>{selectedProduct.product_name}</h2>
-      {/* Add more details or styling as needed */}
+    <div>
+      <table className={`products__table ${isMatch ? 'products__table_match' : ''}`}>
+        <thead className='text products__head'>
+          <tr>
+            <td className='products__head-item'>Соответствующие товары</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+          </tr>
+        </tbody>
+        {isMatch && (
+          <button
+            className='button button-close product__button-close '
+            onClick={handleMatchClose}
+          ></button>
+        )}
+      </table>
     </div>
-  );
+  )
 };
 
 export default ProductDetails;

@@ -1,11 +1,9 @@
 import React from 'react';
-<<<<<<< HEAD
+import { NavLink, useLocation } from 'react-router-dom'
 
 import products from '../Products/Products';
-=======
-import { NavLink, useLocation } from 'react-router-dom';
->>>>>>> ec08420a0a60d03baafdf24870073d5c10bfb804
 import ProductItem from '../ProductItem/ProductItem';
+import ProductDetails from '../Products/ProductDetails';
 import Pagination from '../Pagination/Pagination';
 import icon_match from '../../images/icon_match.png';
 
@@ -18,12 +16,8 @@ function AllProducts(props) {
   const [productsList, setProductsList] = React.useState([]);
   const [views, setViews] = React.useState(10);
   console.log(views);
-<<<<<<< HEAD
   
-  const [currentPage] = React.useState(1);
-=======
   const [currentPage, setCurrentPage] = React.useState(1);
->>>>>>> ec08420a0a60d03baafdf24870073d5c10bfb804
 
   // Match open & close
   function handleMatch() {
@@ -42,6 +36,7 @@ function AllProducts(props) {
   // products index
   const lastProductIndex = currentPage * views;
   const firstProductIndex = lastProductIndex - views;
+
   // const currentProducts = products.slice(firstProductIndex, lastProductIndex);
   const paginate = pageNumber => setCurrentPage(pageNumber);
   const prevPage = () => setCurrentPage(prev => prev - 1);
@@ -127,6 +122,7 @@ function AllProducts(props) {
           </thead>
           <tbody>{res}</tbody>
         </table>
+        <ProductDetails />
         {isMatch && (
           <button
             className='button button-close product__button-close '
