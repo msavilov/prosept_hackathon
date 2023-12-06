@@ -9,7 +9,7 @@ function Main(props) {
   return (
     <main>
       {location.pathname === '/' && <AllProducts />}
-      {/* location.pathname === '/diler-products' && <DilerProducts /> */}
+      {/* {location.pathname === '/diler-products' && <DilerProducts />} */}
     </main>
   );
 }
