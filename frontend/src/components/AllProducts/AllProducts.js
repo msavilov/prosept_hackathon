@@ -2,18 +2,20 @@ import React from 'react';
 
 import products from '../Products/Products';
 import ProductsList from '../ProductsList/ProductsList';
-import ProductItem from '../ProductItem/ProductItem';
 import ProductDetails from '../Products/ProductDetails';
+import SearchForm from '../SearchForm/SearchForm';
 import Pagination from '../Pagination/Pagination';
+import { useValidate } from '../../utils/use-validate';
 
 function AllProducts(props) {
   // States
   const [isMatch, setIsMatch] = React.useState(false);
+  const [allProductsList, setAllProductsList] = React.useState([]);
+  const [filtredProductsList, setFiltredProductsList] = React.useState([]);
   const [productsList, setProductsList] = React.useState([]);
   const [views, setViews] = React.useState(10);
-  console.log(views);
   const [currentPage, setCurrentPage] = React.useState(1);
-  console.log(currentPage);
+  const { formValue, errorMessage, isValid, handleChange, resetForm } = useValidate();
 
   // Match open & close
   function handleMatch() {
@@ -32,8 +34,6 @@ function AllProducts(props) {
   // products index
   const lastProductIndex = currentPage * views;
   const firstProductIndex = lastProductIndex - views;
-
-  // const currentProducts = products.slice(firstProductIndex, lastProductIndex);
   const paginate = pageNumber => setCurrentPage(pageNumber);
   const prevPage = () => setCurrentPage(prev => prev - 1);
   const nextPage = () => setCurrentPage(prev => prev + 1);
@@ -41,20 +41,48 @@ function AllProducts(props) {
   // products for table
   React.useEffect(() => {
     props.setLoading(true);
+    setAllProductsList(products);
+    props.setLoading(false);
+  }, []);
+
+  console.log(formValue);
+  React.useEffect(() => {
+    if (formValue === null) {
+      console.log(formValue);
+      const filtredProducts = allProductsList.filter(prod => {
+        const searchProd =
+          prod.product_name.toLowerCase().includes(formValue.toLowerCase()) ||
+          prod.product_key.toLowerCase().includes(formValue.toLowerCase()) ||
+          prod.date.toLowerCase().includes(formValue.toLowerCase()) ||
+          prod.price.toLowerCase().includes(formValue.toLowerCase());
+        return searchProd;
+      });
+      setFiltredProductsList(filtredProducts);
+    } else {
+      setFiltredProductsList(allProductsList);
+    }
+
+    // localStorage.setItem('filtredProducts', JSON.stringify(filtredProducts));
+  }, [formValue]);
+
+  React.useEffect(() => {
+    props.setLoading(true);
     const firstProductIndex = currentPage * views - views;
     console.log(firstProductIndex);
     const lastProductIndex =
-      currentPage * views > products.length ? products.length : currentPage * views;
+      currentPage * views > filtredProductsList.length
+        ? filtredProductsList.length
+        : currentPage * views;
     console.log(lastProductIndex);
-    if (firstProductIndex >= products.length) {
+    if (firstProductIndex >= filtredProductsList.length) {
       setCurrentPage(1);
     }
     setProductsList(() => {
-      if (products !== null) {
-        if (products.length >= views) {
-          return products.slice(firstProductIndex, lastProductIndex);
+      if (filtredProductsList !== null) {
+        if (filtredProductsList.length >= views) {
+          return filtredProductsList.slice(firstProductIndex, lastProductIndex);
         } else {
-          return products;
+          return filtredProductsList;
         }
       } else {
         setCurrentPage(1);
@@ -66,21 +94,22 @@ function AllProducts(props) {
   return (
     <section className='section products' aria-label='Таблица товаров'>
       <h1 className='section-title products__title'>Товары продавцов</h1>
-      <div className='products__optoins'>
+      <div className='products__options'>
         <label className='text products__label' for='views'>
           Show:
+          <input
+            className='text products__input'
+            type='number'
+            id='views'
+            name='views'
+            min='10'
+            max='500'
+            step='5'
+            value={views}
+            onChange={handleViewsChange}
+          />
         </label>
-        <input
-          className='text products__input'
-          type='number'
-          id='views'
-          name='views'
-          min='10'
-          max='500'
-          step='5'
-          value={views}
-          onChange={handleViewsChange}
-        />
+        <SearchForm formValue={formValue} handleChange={handleChange} />
       </div>
       <div className='products__main'>
         <ProductsList
@@ -95,7 +124,7 @@ function AllProducts(props) {
       <Pagination
         views={views}
         currentPage={currentPage}
-        totalProducts={products.length}
+        totalProducts={filtredProductsList.length}
         firstProductIndex={firstProductIndex}
         lastProductIndex={lastProductIndex}
         paginate={paginate}

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 function Pagination(props) {
   const pageNumber = [];
   const allPageNumer = Math.ceil(props.totalProducts / props.views);
-  console.log(props.firstProductIndex);
 
   for (let i = 1; i <= allPageNumer; i++) {
     pageNumber.push(i);
