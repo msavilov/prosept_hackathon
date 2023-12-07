@@ -43,7 +43,7 @@ function AllProducts(props) {
   const nextPage = () => setCurrentPage(prev => prev + 1);
 
   // products for table
-  /*React.useEffect(() => {
+  React.useEffect(() => {
     props.setLoading(true);
     setAllProductsList(products);
     props.setLoading(false);
@@ -74,26 +74,24 @@ function AllProducts(props) {
     const firstProductIndex = currentPage * views - views;
     console.log(firstProductIndex);
     const lastProductIndex =
-      currentPage * views > filtredProductsList.length
-        ? filtredProductsList.length
-        : currentPage * views;
+      currentPage * views > allProductsList.length ? allProductsList.length : currentPage * views;
     console.log(lastProductIndex);
-    if (firstProductIndex >= filtredProductsList.length) {
+    if (firstProductIndex >= allProductsList.length) {
       setCurrentPage(1);
     }
     setProductsList(() => {
-      if (filtredProductsList !== null) {
-        if (filtredProductsList.length >= views) {
-          return filtredProductsList.slice(firstProductIndex, lastProductIndex);
+      if (allProductsList !== null) {
+        if (allProductsList.length >= views) {
+          return allProductsList.slice(firstProductIndex, lastProductIndex);
         } else {
-          return filtredProductsList;
+          return allProductsList;
         }
       } else {
         setCurrentPage(1);
       }
     });
     props.setLoading(false);
-  }, [views, currentPage]);*/
+  }, [views, currentPage]);
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
