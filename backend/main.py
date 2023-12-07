@@ -2,19 +2,16 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 
-from core import config
+from backend.api.v1.dealerprice import router
+from backend.core import config
 
 app = FastAPI(
-    title=config.PROJECT_NAME,
-    docs_url='/api/openapi',
-    openapi_url='/api/openapi.json',
     default_response_class=ORJSONResponse,
 )
 
+app.include_router(router)
 
-@app.get('/index')
-def index():
-    return {'Hello': 'Developer'}
+app.mount("/v1", app)
 
 
 if __name__ == '__main__':

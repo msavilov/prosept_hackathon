@@ -41,7 +41,8 @@ class DealerPrice(Base):
 
 class ProductDealer(Base):
     """Модель сопоставления продукта производителя и продуктов дилера."""
+    id = Column(Integer, primary_key=True)
     key = Column(Integer, ForeignKey('dealerprice.product_key'))
-    dealer_id = Column(Integer)
+    dealer_id = Column(Integer, ForeignKey('dealer.id'))
     product_id = Column(Integer, ForeignKey('product.id'))
     create_dt = Column(Date)
