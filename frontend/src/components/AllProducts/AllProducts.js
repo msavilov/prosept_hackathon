@@ -44,54 +44,54 @@ function AllProducts(props) {
 
   // products for table
   React.useEffect(() => {
-    props.setLoading(true);
+    // props.setLoading(true);
     setAllProductsList(products);
-    props.setLoading(false);
+    // props.setLoading(false);
+    console.log(allProductsList);
+    // localStorage.setItem('allProductsList', JSON.stringify(allProductsList));
   }, []);
 
-  console.log(formValue);
+  console.log(formValue.search);
+
   React.useEffect(() => {
-    if (formValue === null) {
-      console.log(formValue);
+    if (formValue.search !== undefined) {
+      console.log(formValue.search);
       const filtredProducts = allProductsList.filter(prod => {
         const searchProd =
-          prod.product_name.toLowerCase().includes(formValue.toLowerCase()) ||
-          prod.product_key.toLowerCase().includes(formValue.toLowerCase()) ||
-          prod.date.toLowerCase().includes(formValue.toLowerCase()) ||
-          prod.price.toLowerCase().includes(formValue.toLowerCase());
+          prod.product_name.toLowerCase().includes(formValue.search.toLowerCase()) ||
+          //   prod.product_key.toLowerCase().includes(formValue.search.toLowerCase()) ||
+          prod.date.toLowerCase().includes(formValue.search.toLowerCase());
+        //   || prod.price.toLowerCase().includes(formValue.search.toLowerCase());
         return searchProd;
       });
       setFiltredProductsList(filtredProducts);
     } else {
       setFiltredProductsList(allProductsList);
     }
+    console.log(filtredProductsList);
 
-    // localStorage.setItem('filtredProducts', JSON.stringify(filtredProducts));
-  }, [formValue]);
-
-  React.useEffect(() => {
-    props.setLoading(true);
     const firstProductIndex = currentPage * views - views;
     console.log(firstProductIndex);
     const lastProductIndex =
-      currentPage * views > allProductsList.length ? allProductsList.length : currentPage * views;
+      currentPage * views > filtredProductsList.length
+        ? filtredProductsList.length
+        : currentPage * views;
     console.log(lastProductIndex);
-    if (firstProductIndex >= allProductsList.length) {
+    if (firstProductIndex >= filtredProductsList.length) {
       setCurrentPage(1);
     }
     setProductsList(() => {
-      if (allProductsList !== null) {
-        if (allProductsList.length >= views) {
-          return allProductsList.slice(firstProductIndex, lastProductIndex);
+      if (filtredProductsList !== null) {
+        if (filtredProductsList.length >= views) {
+          return filtredProductsList.slice(firstProductIndex, lastProductIndex);
         } else {
-          return allProductsList;
+          return filtredProductsList;
         }
       } else {
         setCurrentPage(1);
       }
     });
-    props.setLoading(false);
-  }, [views, currentPage]);
+  }, [views, currentPage, formValue.search]);
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
