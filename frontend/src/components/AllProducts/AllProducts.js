@@ -66,10 +66,10 @@ function AllProducts(props) {
     // localStorage.setItem('filtredProducts', JSON.stringify(filtredProducts));
   }, [formValue]);
 
-  /*React.useEffect(() => {
-    props.setLoading(true);
+  React.useEffect(() => {
+    /*props.setLoading(true);
     const firstProductIndex = currentPage * views - views;
-    console.log(firstProductIndex);
+    console.log(firstProductIndex);*/
 
     const lastProductIndex =
       currentPage * views > allProductsList.length ? allProductsList.length : currentPage * views;
@@ -79,8 +79,8 @@ function AllProducts(props) {
       setCurrentPage(1);
     }
     
-    props.setLoading(false);
-  }, [views, currentPage]);*/
+    /*props.setLoading(false);
+  }, [views, currentPage]);*/ })
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
