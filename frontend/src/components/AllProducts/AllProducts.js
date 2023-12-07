@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import products from '../Products/Products';
 import ProductsList from '../ProductsList/ProductsList';
@@ -40,6 +40,7 @@ function AllProducts(props) {
 
   // products for table
   React.useEffect(() => {
+<<<<<<< HEAD
     /*props.setLoading(true);*/
     setAllProductsList(products);
     /*props.setLoading(false);*/
@@ -58,17 +59,43 @@ function AllProducts(props) {
     if (formValue.search !== undefined) {
       console.log(formValue.search);
       const filtredProducts = allProductsList.filter(prod => {
+=======
+    // props.setLoading(true);
+    console.log(products);
+    // if (localStorage.allProductsList) {
+    //   const allProductsLS = JSON.parse(localStorage.getItem('allProductsList'));
+    //   setAllProductsList(allProductsLS);
+    //   console.log(allProductsList);
+    // } else {
+    setAllProductsList(products);
+    // localStorage.setItem('allProductsList', JSON.stringify(allProductsList));
+    // }
+
+    // props.setLoading(false);
+    console.log(allProductsList);
+    startFilter(allProductsList, formValue.search);
+  }, []);
+
+  //   console.log(formValue.search);
+
+  // Фильтрация поискового запроса
+  const startFilter = useCallback((prods, formValue) => {
+    if (formValue !== undefined) {
+      console.log(formValue);
+      const filtredProducts = prods.filter(prod => {
+>>>>>>> b4fac7750277a477a42570d22f1311bd397fe044
         const searchProd =
-          prod.product_name.toLowerCase().includes(formValue.search.toLowerCase()) ||
-          //   prod.product_key.toLowerCase().includes(formValue.search.toLowerCase()) ||
-          prod.date.toLowerCase().includes(formValue.search.toLowerCase());
-        //   || prod.price.toLowerCase().includes(formValue.search.toLowerCase());
+          prod.product_name.toLowerCase().includes(formValue.toLowerCase()) ||
+          //   prod.product_key.toLowerCase().includes(formValue.toLowerCase()) ||
+          prod.date.toLowerCase().includes(formValue.toLowerCase());
+        //   || prod.price.toLowerCase().includes(formValue.toLowerCase());
         return searchProd;
       });
       setFiltredProductsList(filtredProducts);
     } else {
-      setFiltredProductsList(allProductsList);
+      setFiltredProductsList(prods);
     }
+<<<<<<< HEAD
     console.log(filtredProductsList);
 
     // localStorage.setItem('filtredProducts', JSON.stringify(filtredProducts));
@@ -78,20 +105,46 @@ function AllProducts(props) {
     /*props.setLoading(true);*/
     /*const firstProductIndex = currentPage * views - views;
     console.log(firstProductIndex);
+=======
+  }, []);
 
+  React.useEffect(() => {
+    // if (formValue.search !== undefined) {
+    //   console.log(formValue.search);
+    //   const filtredProducts = allProductsList.filter(prod => {
+    //     const searchProd =
+    //       prod.product_name.toLowerCase().includes(formValue.search.toLowerCase()) ||
+    //       //   prod.product_key.toLowerCase().includes(formValue.search.toLowerCase()) ||
+    //       prod.date.toLowerCase().includes(formValue.search.toLowerCase());
+    //     //   || prod.price.toLowerCase().includes(formValue.search.toLowerCase());
+    //     return searchProd;
+    //   });
+    //   setFiltredProductsList(filtredProducts);
+    // } else {
+    //   setFiltredProductsList(allProductsList);
+    // }
+    // console.log(filtredProductsList);
+    startFilter(allProductsList, formValue.search);
+>>>>>>> b4fac7750277a477a42570d22f1311bd397fe044
+
+    const firstProductIndex = currentPage * views - views;
     const lastProductIndex =
       currentPage * views > filtredProductsList.length
         ? filtredProductsList.length
         : currentPage * views;
-    console.log(lastProductIndex);
+
     if (firstProductIndex >= filtredProductsList.length) {
       setCurrentPage(1);
     }
+<<<<<<< HEAD
 
     /*props.setLoading(false);*/
   //}, [views, currentPage]);
 
     /*setProductsList(() => {
+=======
+    setProductsList(() => {
+>>>>>>> b4fac7750277a477a42570d22f1311bd397fe044
       if (filtredProductsList !== null) {
         if (filtredProductsList.length >= views) {
           return filtredProductsList.slice(firstProductIndex, lastProductIndex);
@@ -101,7 +154,12 @@ function AllProducts(props) {
       } else {
         setCurrentPage(1);
       }
+<<<<<<< HEAD
   }, [views, currentPage, formValue.search]);*/
+=======
+    });
+  }, [views, currentPage, formValue.search]);
+>>>>>>> b4fac7750277a477a42570d22f1311bd397fe044
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
