@@ -34,7 +34,7 @@ function App() {
           path='/all-products'
           element={<AllProducts setLoading={setIsLoading} products={products} />}
         />
-        <Route path='/load' element={<Load />} />
+        <Route path='/unloading' element={<Load products={products}isMatch={true} />} />
         {/* <Route path='/*' element={<NotFound />} /> */}
         <Route
           path='/statistics'
