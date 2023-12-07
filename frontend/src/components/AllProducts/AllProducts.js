@@ -2,7 +2,6 @@ import React from 'react';
 
 import products from '../Products/Products';
 import ProductsList from '../ProductsList/ProductsList';
-import ProductItem from '../ProductItem/ProductItem';
 import ProductDetails from '../Products/ProductDetails';
 import Pagination from '../Pagination/Pagination';
 import RelatedProducts from '../Products/RelatedProducts';
@@ -44,12 +43,15 @@ function AllProducts(props) {
 
   // products for table
   /*React.useEffect(() => {
+
     props.setLoading(true);
     const firstProductIndex = currentPage * views - views;
     console.log(firstProductIndex);
+
     const lastProductIndex =
       currentPage * views > products.length ? products.length : currentPage * views;
     console.log(lastProductIndex);
+
     if (firstProductIndex >= products.length) {
       setCurrentPage(1);
     }
@@ -65,13 +67,13 @@ function AllProducts(props) {
       }
     });
     props.setLoading(false);
-  }, [views, currentPage]);*/
+  }, [views, currentPage, products, setLoading]);*/
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
       <h1 className='section-title products__title'>Товары продавцов</h1>
       <div className='products__optoins'>
-        <label className='text products__label' for='views'>
+        <label className='text products__label' htmlFor='views'>
           Show:
         </label>
         <input
