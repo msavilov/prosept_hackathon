@@ -1,8 +1,8 @@
-"""Final migrations
+"""Migrations for PostgreSQL
 
-Revision ID: 2215cc4fdea8
+Revision ID: cdf4adf0bfcc
 Revises: 
-Create Date: 2023-12-04 22:50:01.454499
+Create Date: 2023-12-08 01:51:07.444345
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '2215cc4fdea8'
+revision: str = 'cdf4adf0bfcc'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -28,11 +28,11 @@ def upgrade() -> None:
     op.create_table('product',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('article', sa.String(), nullable=True),
-    sa.Column('ean_13', sa.Integer(), nullable=True),
+    sa.Column('ean_13', sa.BigInteger(), nullable=True),
     sa.Column('name', sa.String(), nullable=True),
     sa.Column('cost', sa.Float(), nullable=True),
     sa.Column('recommended_price', sa.Float(), nullable=True),
-    sa.Column('category_id', sa.Integer(), nullable=True),
+    sa.Column('category_id', sa.BigInteger(), nullable=True),
     sa.Column('ozon_name', sa.String(), nullable=True),
     sa.Column('name_1c', sa.String(), nullable=True),
     sa.Column('wb_name', sa.String(), nullable=True),
@@ -43,19 +43,19 @@ def upgrade() -> None:
     )
     op.create_table('dealerprice',
     sa.Column('id', sa.Integer(), nullable=True),
-    sa.Column('product_key', sa.Integer(), nullable=False),
+    sa.Column('product_key', sa.BigInteger(), nullable=False),
     sa.Column('price', sa.Float(), nullable=True),
     sa.Column('product_url', sa.String(), nullable=True),
     sa.Column('product_name', sa.String(), nullable=True),
     sa.Column('date', sa.Date(), nullable=True),
-    sa.Column('dealer_id', sa.Integer(), nullable=True),
+    sa.Column('dealer_id', sa.BigInteger(), nullable=True),
     sa.Column('is_marked', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['dealer_id'], ['dealer.id'], ),
     sa.PrimaryKeyConstraint('product_key')
     )
     op.create_table('productdealer',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('key', sa.Integer(), nullable=True),
+    sa.Column('key', sa.BigInteger(), nullable=True),
     sa.Column('dealer_id', sa.Integer(), nullable=True),
     sa.Column('product_id', sa.Integer(), nullable=True),
     sa.Column('create_dt', sa.Date(), nullable=True),
