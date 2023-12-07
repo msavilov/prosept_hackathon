@@ -4,6 +4,8 @@ from pydantic import BaseModel
 
 
 class DealerPriceScheme(BaseModel):
+    """Pydantic-схема для модели DealerPrice"""
+    id: int
     product_key: int
     price: float
     product_url: str
@@ -11,3 +13,6 @@ class DealerPriceScheme(BaseModel):
     date: date
     dealer_id: int
     is_marked: bool
+
+    class Config:
+        title = 'Схема товара дилера'
