@@ -17,7 +17,6 @@ function AllProducts(props) {
   const [currentPage, setCurrentPage] = React.useState(1);
   const { formValue, errorMessage, isValid, handleChange, resetForm } = useValidate();
 
-
   // Match open & close
   function handleMatch() {
     setIsMatch(true);
@@ -41,53 +40,85 @@ function AllProducts(props) {
 
   // products for table
   React.useEffect(() => {
+<<<<<<< HEAD
     /*props.setLoading(true);*/
     setAllProductsList(products);
     /*props.setLoading(false);*/
   }, []);
 
   console.log(formValue);
+=======
+    // props.setLoading(true);
+    setAllProductsList(products);
+    // props.setLoading(false);
+    console.log(allProductsList);
+    // localStorage.setItem('allProductsList', JSON.stringify(allProductsList));
+  }, []);
+
+  console.log(formValue.search);
+
+>>>>>>> bbd003ea51aba6dd48aafd085b964a6d9e7feb4d
   React.useEffect(() => {
-    if (formValue === null) {
-      console.log(formValue);
+    if (formValue.search !== undefined) {
+      console.log(formValue.search);
       const filtredProducts = allProductsList.filter(prod => {
         const searchProd =
-          prod.product_name.toLowerCase().includes(formValue.toLowerCase()) ||
-          prod.product_key.toLowerCase().includes(formValue.toLowerCase()) ||
-          prod.date.toLowerCase().includes(formValue.toLowerCase()) ||
-          prod.price.toLowerCase().includes(formValue.toLowerCase());
+          prod.product_name.toLowerCase().includes(formValue.search.toLowerCase()) ||
+          //   prod.product_key.toLowerCase().includes(formValue.search.toLowerCase()) ||
+          prod.date.toLowerCase().includes(formValue.search.toLowerCase());
+        //   || prod.price.toLowerCase().includes(formValue.search.toLowerCase());
         return searchProd;
       });
       setFiltredProductsList(filtredProducts);
     } else {
       setFiltredProductsList(allProductsList);
     }
+    console.log(filtredProductsList);
 
+<<<<<<< HEAD
     // localStorage.setItem('filtredProducts', JSON.stringify(filtredProducts));
   }, [formValue]);
 
   React.useEffect(() => {
     /*props.setLoading(true);*/
+=======
+>>>>>>> bbd003ea51aba6dd48aafd085b964a6d9e7feb4d
     const firstProductIndex = currentPage * views - views;
     console.log(firstProductIndex);
 
     const lastProductIndex =
-      currentPage * views > allProductsList.length ? allProductsList.length : currentPage * views;
+      currentPage * views > filtredProductsList.length
+        ? filtredProductsList.length
+        : currentPage * views;
     console.log(lastProductIndex);
-
-    if (firstProductIndex >= allProductsList.length) {
+    if (firstProductIndex >= filtredProductsList.length) {
       setCurrentPage(1);
     }
+<<<<<<< HEAD
     
     /*props.setLoading(false);*/
   }, [views, currentPage]);
+=======
+    setProductsList(() => {
+      if (filtredProductsList !== null) {
+        if (filtredProductsList.length >= views) {
+          return filtredProductsList.slice(firstProductIndex, lastProductIndex);
+        } else {
+          return filtredProductsList;
+        }
+      } else {
+        setCurrentPage(1);
+      }
+    });
+  }, [views, currentPage, formValue.search]);
+>>>>>>> bbd003ea51aba6dd48aafd085b964a6d9e7feb4d
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
       <h1 className='section-title products__title'>Товары продавцов</h1>
       <div className='products__optoins'>
-        <label className='text products__label' htmlFor='views'>
-          </label></div>
+        <label className='text products__label' htmlFor='views'></label>
+      </div>
       <div className='products__options'>
         <label className='text products__label' htmlFor='views'>
           Show:
