@@ -13,26 +13,43 @@ import UnLoading from './UnLoading/UnLoading';
 import AllProducts from './AllProducts/AllProducts';
 //import DilerProducts from './DilerProducts';
 import Preloader from './Preloader/Preloader';
+import { LoadingContext } from '../contexts/LoadingContext';
+import { LoggedInContext } from '../contexts/LoggedInContext';
 
 function App() {
   // States
-  const [loading, setLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(null);
 
-  return loading ? (
-    <Preloader />
-  ) : (
-    <div className='App page'>
-      <AppHeader />
-      <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/all-products' element={<AllProducts setLoading={setLoading} />} />
-        {/* <Route path='/diler-products' element={<DilerProducts />} /> */}
-        {/* <Route path='/*' element={<NotFound />} /> */}
-        <Route path='/statistics' element={<Statistics />} />
-        <Route path='/unloading' element={<UnLoading />} />
-      </Routes>
-      <Footer />
-    </div>
+  // Change state loading
+  function handleSetIsLoading(boolean) {
+    setIsLoading(boolean);
+  }
+
+  return (
+    <LoadingContext.Provider value={isLoading}>
+      <LoggedInContext.Provider value={isLoggedIn}>
+        {isLoading ? (
+          <Preloader />
+        ) : (
+          <div className='App page'>
+            <AppHeader />
+            <Routes>
+              <Route path='/' element={<Main />} />
+              <Route
+                path='/all-products'
+                element={<AllProducts setLoading={handleSetIsLoading} />}
+              />
+              {/* <Route path='/diler-products' element={<DilerProducts />} /> */}
+              {/* <Route path='/*' element={<NotFound />} /> */}
+              <Route path='/statistics' element={<Statistics />} />
+              <Route path='/unloading' element={<UnLoading />} />
+            </Routes>
+            <Footer />
+          </div>
+        )}
+      </LoggedInContext.Provider>
+    </LoadingContext.Provider>
   );
 }
 

@@ -6,7 +6,6 @@ import RelatedProducts from '../Products/RelatedProducts';
 import ProductDetails from '../Products/ProductDetails';
 
 function ProductsList(props) {
-
   const [editing, setEditing] = React.useState(true);
   const [marked, setMarked] = React.useState([]);
 
