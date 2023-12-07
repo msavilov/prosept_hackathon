@@ -6,6 +6,7 @@ import ProductDetails from '../Products/ProductDetails';
 import SearchForm from '../SearchForm/SearchForm';
 import Pagination from '../Pagination/Pagination';
 import { useValidate } from '../../utils/use-validate';
+import RelatedProducts from '../Products/RelatedProducts';
 
 function AllProducts(props) {
   // States
@@ -16,6 +17,9 @@ function AllProducts(props) {
   const [views, setViews] = React.useState(10);
   const [currentPage, setCurrentPage] = React.useState(1);
   const { formValue, errorMessage, isValid, handleChange, resetForm } = useValidate();
+
+  const [editing, setEditing] = React.useState(true);
+  const [marked, setMarked] = React.useState([]);
 
   // Match open & close
   function handleMatch() {
@@ -39,7 +43,7 @@ function AllProducts(props) {
   const nextPage = () => setCurrentPage(prev => prev + 1);
 
   // products for table
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     props.setLoading(true);
     setAllProductsList(products);
     props.setLoading(false);
@@ -89,7 +93,7 @@ function AllProducts(props) {
       }
     });
     props.setLoading(false);
-  }, [views, currentPage]);
+  }, [views, currentPage]);*/
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
@@ -121,6 +125,12 @@ function AllProducts(props) {
           handleMatchClose={handleMatchClose}
         />
       </div>
+      {editing && RelatedProducts && (
+        <div>
+          <ProductDetails selectedProduct={RelatedProducts} />
+          <RelatedProducts clickedProduct={RelatedProducts} markedProducts={marked} />
+        </div>
+      )}
       <Pagination
         views={views}
         currentPage={currentPage}
