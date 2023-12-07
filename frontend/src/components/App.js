@@ -9,7 +9,6 @@ import Footer from './Footer/Footer';
 import Statistics from './Statistics/Statistics';
 import UnLoading from './UnLoading/UnLoading';
 //import NotFound from './NotFound';
-//import InfoTooltip from './InfoTooltip';
 //import ProtectedRoute from './ProtectedRoute';
 import AllProducts from './AllProducts/AllProducts';
 //import DilerProducts from './DilerProducts';

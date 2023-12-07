@@ -3,20 +3,6 @@ import ProductItem from '../ProductItem/ProductItem';
 import icon_match from '../../images/icon_match.png';
 
 function ProductsList(props) {
-  // States
-  console.log(props.productsList);
-
-  // res
-  let res = props.productsList.map(product => (
-    <ProductItem
-      key={product.id}
-      product={product}
-      isMatch={props.isMatch}
-      handleMatch={props.handleMatch}
-      handleMatchClose={props.handleMatchClose}
-    />
-  ));
-
   return (
     <div className='products__main'>
       <table className={`products__table ${props.isMatch ? 'products__table_match' : ''}`}>
@@ -42,7 +28,6 @@ function ProductsList(props) {
           )}
         </thead>
         <tbody>
-          {/* {res} */}
           {props.productsList.map(product => (
             <ProductItem
               key={product.id}

@@ -27,7 +27,7 @@
 @import url(./blocks/error/_visible/error_visible.css); */
 
 /*Preloader*/
-/* @import url(./components/Preloader.css); */
+@import url(./components/Preloader/Preloader.css);
 
 /*секция header*/
 @import url(./components/Header/AppHeader.css);
@@ -41,11 +41,10 @@
 @import url(./components/Pagination/Pagination.css);
 
 /*Main*/
-/* @import url(./components/Main.css); */
+@import url(./components/Main/Main.css);
 
 /*Other*/
-/* @import url(./components/AuthForm.css);
-@import url(./components/InfoTooltip.css); */
+@import url(./components/SearchForm/SearchForm.css);
 
 /*NotFound*/
 /* @import url(./components/NotFound.css); */
