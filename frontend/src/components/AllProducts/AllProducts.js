@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import products from '../Products/Products';
+// import products from '../Products/Products';
 import ProductsList from '../ProductsList/ProductsList';
 import SearchForm from '../SearchForm/SearchForm';
 import Pagination from '../Pagination/Pagination';
@@ -15,6 +15,9 @@ function AllProducts(props) {
   const [views, setViews] = React.useState(10);
   const [currentPage, setCurrentPage] = React.useState(1);
   const { formValue, handleChange } = useValidate();
+
+  const products = props.products;
+  console.log(props);
   console.log(allProductsList);
 
   // Match open & close
@@ -25,13 +28,6 @@ function AllProducts(props) {
   function handleMatchClose() {
     setIsMatch(false);
   }
-
-  // products index
-  // const firstProductIndex = currentPage * views - views;
-  // const lastProductIndex =
-  // currentPage * views > filtredProductsList.length
-  //   ? filtredProductsList.length
-  //   : currentPage * views;
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
   const prevPage = () => setCurrentPage(prev => prev - 1);
@@ -86,29 +82,17 @@ function AllProducts(props) {
 
   // products for table
   React.useEffect(() => {
+    props.setLoading(true);
+    setAllProductsList(products);
     pagination(allProductsList);
-    startFilter(allProductsList, formValue.search);
+    // startFilter(allProductsList, formValue.search);
+    props.setLoading(false);
   }, []);
 
   React.useEffect(() => {
-    // if (formValue.search !== undefined) {
-    //   console.log(formValue.search);
-    //   const filtredProducts = allProductsList.filter(prod => {
-    //     const searchProd =
-    //       prod.product_name.toLowerCase().includes(formValue.search.toLowerCase()) ||
-    //       prod.date.toLowerCase().includes(formValue.search.toLowerCase());
-
-    //     return searchProd;
-    //   });
-    //   setFiltredProductsList(filtredProducts);
-    // } else {
-    //   setFiltredProductsList(allProductsList);
-    // }
-    // console.log(filtredProductsList);
-
-    startFilter(allProductsList, formValue.search);
-    pagination(filtredProductsList);
-  }, [views, currentPage, formValue]);
+    // startFilter(allProductsList, formValue.search);
+    pagination(allProductsList);
+  }, [views, currentPage, formValue, allProductsList]);
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
@@ -144,11 +128,11 @@ function AllProducts(props) {
       <Pagination
         views={views}
         currentPage={currentPage}
-        totalProducts={filtredProductsList.length}
+        totalProducts={allProductsList.length}
         firstProductIndex={currentPage * views - views}
         lastProductIndex={
-          currentPage * views > filtredProductsList.length
-            ? filtredProductsList.length
+          currentPage * views > allProductsList.length
+            ? allProductsList.length
             : currentPage * views
         }
         paginate={paginate}

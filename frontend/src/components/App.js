@@ -30,7 +30,10 @@ function App() {
       <AppHeader />
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='/all-products' element={<AllProducts setLoading={setIsLoading} />} />
+        <Route
+          path='/all-products'
+          element={<AllProducts setLoading={setIsLoading} products={products} />}
+        />
         <Route path='/load' element={<Load />} />
         {/* <Route path='/*' element={<NotFound />} /> */}
         <Route
