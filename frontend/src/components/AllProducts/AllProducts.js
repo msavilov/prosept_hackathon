@@ -2,11 +2,10 @@ import React from 'react';
 
 import products from '../Products/Products';
 import ProductsList from '../ProductsList/ProductsList';
-import ProductDetails from '../Products/ProductDetails';
+
 import SearchForm from '../SearchForm/SearchForm';
 import Pagination from '../Pagination/Pagination';
 import { useValidate } from '../../utils/use-validate';
-import RelatedProducts from '../Products/RelatedProducts';
 
 function AllProducts(props) {
   // States
@@ -18,8 +17,6 @@ function AllProducts(props) {
   const [currentPage, setCurrentPage] = React.useState(1);
   const { formValue, errorMessage, isValid, handleChange, resetForm } = useValidate();
 
-  const [editing, setEditing] = React.useState(true);
-  const [marked, setMarked] = React.useState([]);
 
   // Match open & close
   function handleMatch() {
@@ -43,17 +40,13 @@ function AllProducts(props) {
   const nextPage = () => setCurrentPage(prev => prev + 1);
 
   // products for table
-<<<<<<< HEAD
   /*React.useEffect(() => {
-
-=======
-  React.useEffect(() => {
     props.setLoading(true);
     setAllProductsList(products);
     props.setLoading(false);
   }, []);
 
-  console.log(formValue);
+  console.log(formValue);*/
   React.useEffect(() => {
     if (formValue === null) {
       console.log(formValue);
@@ -73,8 +66,7 @@ function AllProducts(props) {
     // localStorage.setItem('filtredProducts', JSON.stringify(filtredProducts));
   }, [formValue]);
 
-  React.useEffect(() => {
->>>>>>> 03f8a6275f7616aba647ca6ca6bf5f473fcdc210
+  /*React.useEffect(() => {
     props.setLoading(true);
     const firstProductIndex = currentPage * views - views;
     console.log(firstProductIndex);
@@ -82,42 +74,22 @@ function AllProducts(props) {
     const lastProductIndex =
       currentPage * views > allProductsList.length ? allProductsList.length : currentPage * views;
     console.log(lastProductIndex);
-<<<<<<< HEAD
 
-    if (firstProductIndex >= products.length) {
-=======
     if (firstProductIndex >= allProductsList.length) {
->>>>>>> 03f8a6275f7616aba647ca6ca6bf5f473fcdc210
       setCurrentPage(1);
     }
-    setProductsList(() => {
-      if (allProductsList !== null) {
-        if (allProductsList.length >= views) {
-          return allProductsList.slice(firstProductIndex, lastProductIndex);
-        } else {
-          return allProductsList;
-        }
-      } else {
-        setCurrentPage(1);
-      }
-    });
+    
     props.setLoading(false);
-<<<<<<< HEAD
-  }, [views, currentPage, products, setLoading]);*/
-=======
-  }, [views, currentPage]);
->>>>>>> 03f8a6275f7616aba647ca6ca6bf5f473fcdc210
+  }, [views, currentPage]);*/
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
       <h1 className='section-title products__title'>Товары продавцов</h1>
-<<<<<<< HEAD
       <div className='products__optoins'>
         <label className='text products__label' htmlFor='views'>
-=======
+          </label></div>
       <div className='products__options'>
-        <label className='text products__label' for='views'>
->>>>>>> 03f8a6275f7616aba647ca6ca6bf5f473fcdc210
+        <label className='text products__label' htmlFor='views'>
           Show:
           <input
             className='text products__input'
@@ -143,12 +115,6 @@ function AllProducts(props) {
           handleMatchClose={handleMatchClose}
         />
       </div>
-      {editing && RelatedProducts && (
-        <div>
-          <ProductDetails selectedProduct={RelatedProducts} />
-          <RelatedProducts clickedProduct={RelatedProducts} markedProducts={marked} />
-        </div>
-      )}
       <Pagination
         views={views}
         currentPage={currentPage}

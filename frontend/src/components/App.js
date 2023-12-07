@@ -25,7 +25,7 @@ function App() {
       <AppHeader />
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='/all-products' element={<AllProducts setLoading={loading} />} />
+        <Route path='/all-products' element={<AllProducts setLoading={setLoading} />} />
         {/* <Route path='/diler-products' element={<DilerProducts />} /> */}
         {/* <Route path='/*' element={<NotFound />} /> */}
         <Route path='/statistics' element={<Statistics />} />

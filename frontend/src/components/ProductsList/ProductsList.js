@@ -2,7 +2,14 @@ import React from 'react';
 import ProductItem from '../ProductItem/ProductItem';
 import icon_match from '../../images/icon_match.png';
 
+import RelatedProducts from '../Products/RelatedProducts';
+import ProductDetails from '../Products/ProductDetails';
+
 function ProductsList(props) {
+
+  const [editing, setEditing] = React.useState(true);
+  const [marked, setMarked] = React.useState([]);
+
   return (
     <div className='products__main'>
       <table className={`products__table ${props.isMatch ? 'products__table_match' : ''}`}>
@@ -39,6 +46,12 @@ function ProductsList(props) {
           ))}
         </tbody>
       </table>
+      {editing && RelatedProducts && (
+        <div>
+          <ProductDetails selectedProduct={RelatedProducts} />
+          <RelatedProducts clickedProduct={RelatedProducts} markedProducts={marked} />
+        </div>
+      )}
       {props.isMatch && (
         <button
           className='button button-close product__button-close '
