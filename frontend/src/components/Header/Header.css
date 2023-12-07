@@ -1,8 +1,13 @@
+.menu {
+  position: fixed;
+  z-index: 1000;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding:20px;
+  padding: 20px;
   list-style: none;
 }
 
@@ -29,7 +34,6 @@
   height: 106px;
   width: 166px;
 }
-
 
 .header_button {
   height: 40px;

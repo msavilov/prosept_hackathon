@@ -40,7 +40,7 @@ function AllProducts(props) {
 
   // products for table
   React.useEffect(() => {
-<<<<<<< HEAD
+
     /*props.setLoading(true);*/
     setAllProductsList(products);
     /*props.setLoading(false);*/
@@ -95,7 +95,6 @@ function AllProducts(props) {
     } else {
       setFiltredProductsList(prods);
     }
-<<<<<<< HEAD
     console.log(filtredProductsList);
 
     // localStorage.setItem('filtredProducts', JSON.stringify(filtredProducts));
@@ -105,7 +104,6 @@ function AllProducts(props) {
     /*props.setLoading(true);*/
     /*const firstProductIndex = currentPage * views - views;
     console.log(firstProductIndex);
-=======
   }, []);
 
   React.useEffect(() => {
@@ -125,7 +123,6 @@ function AllProducts(props) {
     // }
     // console.log(filtredProductsList);
     startFilter(allProductsList, formValue.search);
->>>>>>> b4fac7750277a477a42570d22f1311bd397fe044
 
     const firstProductIndex = currentPage * views - views;
     const lastProductIndex =
@@ -136,15 +133,11 @@ function AllProducts(props) {
     if (firstProductIndex >= filtredProductsList.length) {
       setCurrentPage(1);
     }
-<<<<<<< HEAD
 
     /*props.setLoading(false);*/
   //}, [views, currentPage]);
 
     /*setProductsList(() => {
-=======
-    setProductsList(() => {
->>>>>>> b4fac7750277a477a42570d22f1311bd397fe044
       if (filtredProductsList !== null) {
         if (filtredProductsList.length >= views) {
           return filtredProductsList.slice(firstProductIndex, lastProductIndex);
@@ -154,12 +147,7 @@ function AllProducts(props) {
       } else {
         setCurrentPage(1);
       }
-<<<<<<< HEAD
   }, [views, currentPage, formValue.search]);*/
-=======
-    });
-  }, [views, currentPage, formValue.search]);
->>>>>>> b4fac7750277a477a42570d22f1311bd397fe044
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
