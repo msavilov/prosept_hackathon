@@ -34,7 +34,6 @@ function RelatedProducts({ clickedProduct, markedProducts }) {
           <tr>
             <th>Product Name</th>
             <th>Product Key</th>
-            {/* Add additional table headers if needed */}
           </tr>
         </thead>
         <tbody>
@@ -58,7 +57,6 @@ function RelatedProducts({ clickedProduct, markedProducts }) {
                   onClick={() => handleMatch(product)}
                 ></button>
               </td>
-              {/* Add additional table cells if needed */}
             </tr>
           ))}
         </tbody>
