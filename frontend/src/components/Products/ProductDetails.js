@@ -1,18 +1,23 @@
 //сведения о продуктах
-import React from 'react';
+import React, {useState} from 'react';
+import RelatedProducts from './RelatedProducts';
+import products from './Products';
 
-function ProductDetails() {
+function ProductDetails({ products }) {
+
+  const [isMatch, setIsMatch] = useState(false);
+  const [clickedProduct, setClickedProduct] = useState(null);
 
   // Match open & close
-  function handleMatch() {
+  function handleMatch(product) {
+    setClickedProduct(product);
     setIsMatch(true);
   }
 
   function handleMatchClose() {
+    setClickedProduct(null);
     setIsMatch(false);
   }
-  const [isMatch, setIsMatch] = React.useState(false);
-  console.log(isMatch);
 
   return (
     <div>
@@ -23,13 +28,10 @@ function ProductDetails() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-          </tr>
         </tbody>
+        {isMatch && (
+          <RelatedProducts clickedProduct={clickedProduct} markedProducts={products} />
+        )}
         {isMatch && (
           <button
             className='button button-close product__button-close '
@@ -38,7 +40,7 @@ function ProductDetails() {
         )}
       </table>
     </div>
-  )
+  );
 };
 
 export default ProductDetails;
