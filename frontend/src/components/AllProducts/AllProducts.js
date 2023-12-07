@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react';
 
-import products from '../Products/Products';
+// import products from '../Products/Products';
 import ProductsList from '../ProductsList/ProductsList';
-
 import SearchForm from '../SearchForm/SearchForm';
 import Pagination from '../Pagination/Pagination';
 import { useValidate } from '../../utils/use-validate';
@@ -15,7 +14,11 @@ function AllProducts(props) {
   const [productsList, setProductsList] = React.useState([]);
   const [views, setViews] = React.useState(10);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const { formValue, errorMessage, isValid, handleChange, resetForm } = useValidate();
+  const { formValue, handleChange } = useValidate();
+
+  const products = props.products;
+  console.log(props);
+  console.log(allProductsList);
 
   // Match open & close
   function handleMatch() {
@@ -26,128 +29,70 @@ function AllProducts(props) {
     setIsMatch(false);
   }
 
-  // value for Views
-  function handleViewsChange(e) {
-    setViews(e.target.value);
-  }
-
-  // products index
-  const lastProductIndex = currentPage * views;
-  const firstProductIndex = lastProductIndex - views;
   const paginate = pageNumber => setCurrentPage(pageNumber);
   const prevPage = () => setCurrentPage(prev => prev - 1);
   const nextPage = () => setCurrentPage(prev => prev + 1);
 
-  // products for table
-  React.useEffect(() => {
+  // function for pagination
+  const pagination = useCallback(
+    prods => {
+      console.log(prods);
+      const firstProductIndex = currentPage * views - views;
+      const lastProductIndex =
+        currentPage * views > prods.length ? prods.length : currentPage * views;
 
-    /*props.setLoading(true);*/
-    setAllProductsList(products);
-    /*props.setLoading(false);*/
-  }, []);
-
-  //console.log(formValue);
-    // props.setLoading(true);
-    //setAllProductsList(products);
-    // props.setLoading(false);
-    //console.log(allProductsList);
-    // localStorage.setItem('allProductsList', JSON.stringify(allProductsList));
-
-  //console.log(formValue.search);
-
-  /*React.useEffect(() => {
-    if (formValue.search !== undefined) {
-      console.log(formValue.search);
-      const filtredProducts = allProductsList.filter(prod => {
-=======
-    // props.setLoading(true);
-    console.log(products);
-    // if (localStorage.allProductsList) {
-    //   const allProductsLS = JSON.parse(localStorage.getItem('allProductsList'));
-    //   setAllProductsList(allProductsLS);
-    //   console.log(allProductsList);
-    // } else {
-    setAllProductsList(products);
-    // localStorage.setItem('allProductsList', JSON.stringify(allProductsList));
-    // }
-
-    // props.setLoading(false);
-    console.log(allProductsList);
-    startFilter(allProductsList, formValue.search);
-  }, []);
-
-  //   console.log(formValue.search);
-
-  // Фильтрация поискового запроса
-  const startFilter = useCallback((prods, formValue) => {
-    if (formValue !== undefined) {
-      console.log(formValue);
-      const filtredProducts = prods.filter(prod => {
->>>>>>> b4fac7750277a477a42570d22f1311bd397fe044
-        const searchProd =
-          prod.product_name.toLowerCase().includes(formValue.toLowerCase()) ||
-          //   prod.product_key.toLowerCase().includes(formValue.toLowerCase()) ||
-          prod.date.toLowerCase().includes(formValue.toLowerCase());
-        //   || prod.price.toLowerCase().includes(formValue.toLowerCase());
-        return searchProd;
-      });
-      setFiltredProductsList(filtredProducts);
-    } else {
-      setFiltredProductsList(prods);
-    }
-    console.log(filtredProductsList);
-
-    // localStorage.setItem('filtredProducts', JSON.stringify(filtredProducts));
-  }, [formValue]);
-
-  React.useEffect(() => {
-    /*props.setLoading(true);*/
-    /*const firstProductIndex = currentPage * views - views;
-    console.log(firstProductIndex);
-  }, []);
-
-  React.useEffect(() => {
-    // if (formValue.search !== undefined) {
-    //   console.log(formValue.search);
-    //   const filtredProducts = allProductsList.filter(prod => {
-    //     const searchProd =
-    //       prod.product_name.toLowerCase().includes(formValue.search.toLowerCase()) ||
-    //       //   prod.product_key.toLowerCase().includes(formValue.search.toLowerCase()) ||
-    //       prod.date.toLowerCase().includes(formValue.search.toLowerCase());
-    //     //   || prod.price.toLowerCase().includes(formValue.search.toLowerCase());
-    //     return searchProd;
-    //   });
-    //   setFiltredProductsList(filtredProducts);
-    // } else {
-    //   setFiltredProductsList(allProductsList);
-    // }
-    // console.log(filtredProductsList);
-    startFilter(allProductsList, formValue.search);
-
-    const firstProductIndex = currentPage * views - views;
-    const lastProductIndex =
-      currentPage * views > filtredProductsList.length
-        ? filtredProductsList.length
-        : currentPage * views;
-
-    if (firstProductIndex >= filtredProductsList.length) {
-      setCurrentPage(1);
-    }
-
-    /*props.setLoading(false);*/
-  //}, [views, currentPage]);
-
-    /*setProductsList(() => {
-      if (filtredProductsList !== null) {
-        if (filtredProductsList.length >= views) {
-          return filtredProductsList.slice(firstProductIndex, lastProductIndex);
-        } else {
-          return filtredProductsList;
-        }
-      } else {
+      if (firstProductIndex >= prods.length) {
         setCurrentPage(1);
       }
-  }, [views, currentPage, formValue.search]);*/
+
+      setProductsList(() => {
+        if (prods !== null) {
+          if (prods.length >= views) {
+            return prods.slice(firstProductIndex, lastProductIndex);
+          } else {
+            return prods;
+          }
+        } else {
+          setCurrentPage(1);
+        }
+      });
+    },
+    [currentPage, views]
+  );
+
+  // Search
+  const startFilter = useCallback(
+    (prods, formValue) => {
+      if (formValue !== undefined) {
+        const filtredProducts = prods.filter(prod => {
+          const searchProd =
+            prod.product_name.toLowerCase().includes(formValue.toLowerCase()) ||
+            prod.date.toLowerCase().includes(formValue.toLowerCase());
+
+          return searchProd;
+        });
+        setFiltredProductsList(filtredProducts);
+      } else {
+        setFiltredProductsList(prods);
+      }
+      console.log(filtredProductsList);
+    },
+    [filtredProductsList]
+  );
+
+  // products for table
+  React.useEffect(() => {
+    props.setLoading(true);
+    setAllProductsList(products);
+    pagination(allProductsList);
+    // startFilter(allProductsList, formValue.search);
+    props.setLoading(false);
+  }, []);
+
+  React.useEffect(() => {
+    // startFilter(allProductsList, formValue.search);
+    pagination(allProductsList);
+  }, [views, currentPage, formValue, allProductsList]);
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
@@ -167,16 +112,14 @@ function AllProducts(props) {
             max='500'
             step='5'
             value={views}
-            onChange={handleViewsChange}
+            onChange={e => setViews(e.target.value)}
           />
         </label>
         <SearchForm formValue={formValue} handleChange={handleChange} />
       </div>
       <div className='products__main'>
         <ProductsList
-          setLoading={props.setLoading}
           productsList={productsList}
-          setProductsList={setProductsList}
           isMatch={isMatch}
           handleMatch={handleMatch}
           handleMatchClose={handleMatchClose}
@@ -185,9 +128,13 @@ function AllProducts(props) {
       <Pagination
         views={views}
         currentPage={currentPage}
-        totalProducts={filtredProductsList.length}
-        firstProductIndex={firstProductIndex}
-        lastProductIndex={lastProductIndex}
+        totalProducts={allProductsList.length}
+        firstProductIndex={currentPage * views - views}
+        lastProductIndex={
+          currentPage * views > allProductsList.length
+            ? allProductsList.length
+            : currentPage * views
+        }
         paginate={paginate}
         prevPage={prevPage}
         nextPage={nextPage}

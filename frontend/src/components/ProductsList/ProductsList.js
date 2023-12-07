@@ -6,8 +6,6 @@ import ProductDetails from '../Products/ProductDetails';
 import RelatedProducts from '../Products/RelatedProducts';
 
 function ProductsList(props) {
-
-
   return (
     <div className='products__main'>
       <table className={`products__table ${props.isMatch ? 'products__table_match' : ''}`}>
@@ -44,10 +42,10 @@ function ProductsList(props) {
           ))}
         </tbody>
       </table>
-        <div>
-          <ProductDetails />
-          <RelatedProducts />
-        </div>
+      <div>
+        <ProductDetails />
+        <RelatedProducts />
+      </div>
       {props.isMatch && (
         <button
           className='button button-close product__button-close '
