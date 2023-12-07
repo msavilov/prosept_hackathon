@@ -2,41 +2,65 @@ import React from "react";
 
 
 function Statistics(props) {
-  
   const { products, marked } = props;
 
   if (!products || !marked) {
     return <div>No data available.</div>;
   }
-  //вычисляем
-  const matchedProductsCount = products.filter(product =>
-    marked.some(markedProduct => markedProduct.id === product.id)
-  ).length;
 
-  const unmatchedProductsCount = products.length - matchedProductsCount;
+  // Calculate counts
+  const countsByDealerId = {};
+  let totalProducts = 0;
+  let totalMatched = 0;
+
+  products.forEach(product => {
+    const dealerId = product.dealer_id;
+    
+    if (!countsByDealerId[dealerId]) {
+      countsByDealerId[dealerId] = {
+        total: 0,
+        matched: 0,
+      };
+    }
+
+    countsByDealerId[dealerId].total++;
+    totalProducts++;
+
+    if (marked.some(markedProduct => markedProduct.id === product.id)) {
+      countsByDealerId[dealerId].matched++;
+      totalMatched++;
+    }
+  });
+
+  const countsList = Object.entries(countsByDealerId);
+
 
   return (
     <div className='products__main'>
       <table className='products__table'>
         <thead className='text products__head'>
           <tr>
-            <td className='products__head-item'>Имя товара</td>
-            <td className='products__head-item'>Дилер</td>
-            <td className='products__head-item'>Сопоставлен</td>
-            <td className='products__head-item'>Matched Products</td>
-            <td className='products__head-item'>Unmatched Products</td>
+            <td className='products__head-item'>Дилеры</td>
+            <td className='products__head-item'>Все товары</td>
+            <td className='products__head-item'>Сопоставленные продукты</td>
+            <td className='products__head-item'>Несопоставленные продукты</td>
           </tr>
         </thead>
         <tbody>
-          {products.map(product => (
-            <tr key={product.id}>
-              <td>{product.product_name}</td>
-              <td>{product.dealer_id}</td>
-              <td>{product.is_marked ? 'Yes' : 'No'}</td>
-              <td>{matchedProductsCount}</td>
-              <td>{unmatchedProductsCount}</td>
+          {countsList.map(([dealerId, counts]) => (
+            <tr key={dealerId}>
+              <td className='products__head-item'>{dealerId}</td>
+              <td className='products__head-item'>{counts.total}</td>
+              <td className='products__head-item'>{counts.matched}</td>
+              <td className='products__head-item'>{counts.total - counts.matched}</td>
             </tr>
           ))}
+          <tr>
+            <td className='products__head-item'>Итого</td>
+            <td className='products__head-item'>{totalProducts}</td>
+            <td className='products__head-item'>{totalMatched}</td>
+            <td className='products__head-item'>{totalProducts - totalMatched}</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -44,3 +68,4 @@ function Statistics(props) {
 }
 
 export default Statistics;
+
