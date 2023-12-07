@@ -32,9 +32,8 @@ function Pagination(props) {
         {pageNumber.map(number => (
           <li className='pagination__item' key={number}>
             <Link
-              className={`button pagination__button ${
-                props.currentPage === number ? 'pagination__button_active' : ''
-              }`}
+              className={`button pagination__button ${props.currentPage === number ? 'pagination__button_active' : ''
+                }`}
               to=''
               onClick={() => props.paginate(number)}
             >

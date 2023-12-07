@@ -86,13 +86,6 @@ function AllProducts(props) {
 
   // products for table
   React.useEffect(() => {
-    if (localStorage.allProductsList) {
-      const allProductsLS = JSON.parse(localStorage.getItem('allProductsList'));
-      setAllProductsList(allProductsLS);
-    } else {
-      setAllProductsList(products);
-      localStorage.setItem('allProductsList', JSON.stringify(products));
-    }
     pagination(allProductsList);
     startFilter(allProductsList, formValue.search);
   }, []);
