@@ -1,6 +1,6 @@
 from datetime import date
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class DealerPriceScheme(BaseModel):
@@ -12,7 +12,7 @@ class DealerPriceScheme(BaseModel):
     product_name: str
     date: date
     dealer_id: int
-    is_marked: bool
+    is_marked: bool = Field(None)
 
     class Config:
         title = 'Схема товара дилера'

@@ -35,7 +35,7 @@ class DealerPrice(Base):
     product_name = Column(String)
     date = Column(Date)
     dealer_id = Column(Integer, ForeignKey('dealer.id'))
-    is_marked = Column(Boolean)
+    is_marked = Column(Boolean, nullable=True)
 
 
 class ProductDealer(Base):

@@ -10,7 +10,7 @@ from backend.schemas.request_examples import request_examples
 
 router_dealer_price = APIRouter(
     prefix='/dealer_price',
-    tags=['/dealer_price - получить/создать товары дилера (по ТЗ полученные из парсера'],
+    tags=['/dealer_price - получить/создать товары дилера (по ТЗ полученные из парсера)'],
 )
 
 
