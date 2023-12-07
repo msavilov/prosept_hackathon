@@ -1,4 +1,5 @@
 from datetime import date
+from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -12,7 +13,7 @@ class DealerPriceScheme(BaseModel):
     product_name: str
     date: date
     dealer_id: int
-    is_marked: bool = Field(None)
+    is_marked: Optional[bool] = Field(None)
 
     class Config:
         title = 'Схема товара дилера'

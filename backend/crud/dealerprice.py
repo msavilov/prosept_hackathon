@@ -1,3 +1,5 @@
+from datetime import date
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -54,6 +56,19 @@ async def get_dealer_price_by_key(
     )
     db_dealer_price = db_dealer_price.scalars().first()
     return db_dealer_price
+
+
+async def get_dealer_price_by_date(
+        filter_date: date,
+        session: AsyncSession,
+) -> list[DealerPrice]:
+    db_dealer_prices = await session.execute(
+        select(DealerPrice).where(
+            DealerPrice.date == filter_date
+        )
+    )
+    db_dealer_prices = db_dealer_prices.scalars().all()
+    return db_dealer_prices
 
 
 async def update_dealer_price(

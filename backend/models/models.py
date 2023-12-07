@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Date, Float, ForeignKey, Integer, String
+from sqlalchemy import Column, Date, Float, ForeignKey, Integer, String
 
 from backend.core.db import Base
 
@@ -35,7 +35,7 @@ class DealerPrice(Base):
     product_name = Column(String)
     date = Column(Date)
     dealer_id = Column(Integer, ForeignKey('dealer.id'))
-    is_marked = Column(Boolean, nullable=True)
+    is_marked = Column(Integer, nullable=True)
 
 
 class ProductDealer(Base):

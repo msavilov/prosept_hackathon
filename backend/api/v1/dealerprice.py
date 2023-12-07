@@ -1,9 +1,12 @@
+from datetime import date
+from typing import Optional
+
 from fastapi import APIRouter, Body, Depends
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.db import get_async_session
-from backend.crud.dealerprice import create_dealer_price, get_all_dealer_prices, get_dealer_price_by_id, update_dealer_price
+from backend.crud.dealerprice import create_dealer_price, get_all_dealer_prices, get_dealer_price_by_id, update_dealer_price, get_dealer_price_by_date
 from backend.schemas.dealerprice import DealerPriceScheme
 
 from backend.schemas.request_examples import request_examples
@@ -18,12 +21,14 @@ router_dealer_price = APIRouter(
     '/',
     summary='Получить список всех товаров дилеров из БД',
 )
-async def get_all_prices(
+async def get_prices(
+        date: Optional[date] = None,
         session: AsyncSession = Depends(get_async_session),
 ) -> list[DealerPriceScheme]:
     """Представление для получения всех товаров продавцов."""
-    dealer_price_list = await get_all_dealer_prices(session)
-    return dealer_price_list
+    if date is not None:
+        return await get_dealer_price_by_date(date, session)
+    return await get_all_dealer_prices(session)
 
 
 @router_dealer_price.get(
