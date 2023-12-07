@@ -20,7 +20,7 @@ function ProductDetails({ products }) {
   }
 
   return (
-    <div>
+    <div className='products__main'>
       <table className={`products__table ${isMatch ? 'products__table_match' : ''}`}>
         <thead className='text products__head'>
           <tr>

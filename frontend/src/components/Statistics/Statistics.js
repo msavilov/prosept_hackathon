@@ -1,40 +1,52 @@
 import React from "react";
 
-import products from "../Products/Products";
 
-function Statistics(products, markedProducts) {
-
+function Statistics(props) {
   
-  if (!products || products.length === 0 || !markedProducts || markedProducts.length === 0) {
-    return {
-      totalProducts: 0,
-      matchedProducts: 0,
-      matchingPercentage: 0,
-    };
+  const { products, marked } = props;
+
+  if (!products || !marked) {
+    return <div>No data available.</div>;
   }
-
-  const totalProducts = products.length;
-  const totalMarkedProducts = markedProducts.length;
-
-  const matchedProducts = products.filter(product =>
-    markedProducts.some(markedProduct => markedProduct.id === product.id)
+  //вычисляем
+  const matchedProductsCount = products.filter(product =>
+    marked.some(markedProduct => markedProduct.id === product.id)
   ).length;
 
-  const matchingPercentage = (matchedProducts / totalMarkedProducts) * 100;
+  const unmatchedProductsCount = products.length - matchedProductsCount;
 
-  return {
-    totalProducts,
-    matchedProducts,
-    matchingPercentage,
-  };
+  return (
+    <div className='products__main'>
+      <table className='products__table'>
+        <thead className='text products__head'>
+          <tr>
+            <td className='products__head-item'>Имя товара</td>
+            <td className='products__head-item'>Цена</td>
+            <td className='products__head-item'>Ссылка</td>
+            <td className='products__head-item'>Сопоставлен</td>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map(product => (
+            <tr key={product.id}>
+              <td>{product.product_name}</td>
+              <td>{product.price}</td>
+              <td><a href={product.product_url} target="_blank" rel="noopener noreferrer">Link</a></td>
+              <td>{product.is_marked ? 'Yes' : 'No'}</td>
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan="3">
+              <p>Matched Products: {matchedProductsCount}</p>
+              <p>Unmatched Products: {unmatchedProductsCount}</p>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  );
 }
-
-const markedProducts = [
-  { id: 1, name: 'Product A' },
-];
-
-const statistics = Statistics(products, markedProducts);
-console.log(statistics);
-
 
 export default Statistics;

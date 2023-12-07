@@ -40,25 +40,21 @@ function AllProducts(props) {
 
   // products for table
   React.useEffect(() => {
-<<<<<<< HEAD
     /*props.setLoading(true);*/
     setAllProductsList(products);
     /*props.setLoading(false);*/
   }, []);
 
-  console.log(formValue);
-=======
+  //console.log(formValue);
     // props.setLoading(true);
-    setAllProductsList(products);
+    //setAllProductsList(products);
     // props.setLoading(false);
-    console.log(allProductsList);
+    //console.log(allProductsList);
     // localStorage.setItem('allProductsList', JSON.stringify(allProductsList));
-  }, []);
 
-  console.log(formValue.search);
+  //console.log(formValue.search);
 
->>>>>>> bbd003ea51aba6dd48aafd085b964a6d9e7feb4d
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     if (formValue.search !== undefined) {
       console.log(formValue.search);
       const filtredProducts = allProductsList.filter(prod => {
@@ -75,15 +71,12 @@ function AllProducts(props) {
     }
     console.log(filtredProductsList);
 
-<<<<<<< HEAD
     // localStorage.setItem('filtredProducts', JSON.stringify(filtredProducts));
   }, [formValue]);
 
   React.useEffect(() => {
     /*props.setLoading(true);*/
-=======
->>>>>>> bbd003ea51aba6dd48aafd085b964a6d9e7feb4d
-    const firstProductIndex = currentPage * views - views;
+    /*const firstProductIndex = currentPage * views - views;
     console.log(firstProductIndex);
 
     const lastProductIndex =
@@ -94,12 +87,11 @@ function AllProducts(props) {
     if (firstProductIndex >= filtredProductsList.length) {
       setCurrentPage(1);
     }
-<<<<<<< HEAD
-    
+
     /*props.setLoading(false);*/
-  }, [views, currentPage]);
-=======
-    setProductsList(() => {
+  //}, [views, currentPage]);
+
+    /*setProductsList(() => {
       if (filtredProductsList !== null) {
         if (filtredProductsList.length >= views) {
           return filtredProductsList.slice(firstProductIndex, lastProductIndex);
@@ -109,9 +101,7 @@ function AllProducts(props) {
       } else {
         setCurrentPage(1);
       }
-    });
-  }, [views, currentPage, formValue.search]);
->>>>>>> bbd003ea51aba6dd48aafd085b964a6d9e7feb4d
+  }, [views, currentPage, formValue.search]);*/
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
