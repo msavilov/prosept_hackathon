@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import products from '../Products/Products';
 import ProductsList from '../ProductsList/ProductsList';
@@ -41,39 +41,65 @@ function AllProducts(props) {
   // products for table
   React.useEffect(() => {
     // props.setLoading(true);
+    console.log(products);
+    // if (localStorage.allProductsList) {
+    //   const allProductsLS = JSON.parse(localStorage.getItem('allProductsList'));
+    //   setAllProductsList(allProductsLS);
+    //   console.log(allProductsList);
+    // } else {
     setAllProductsList(products);
+    // localStorage.setItem('allProductsList', JSON.stringify(allProductsList));
+    // }
+
     // props.setLoading(false);
     console.log(allProductsList);
-    // localStorage.setItem('allProductsList', JSON.stringify(allProductsList));
+    startFilter(allProductsList, formValue.search);
   }, []);
 
-  console.log(formValue.search);
+  //   console.log(formValue.search);
 
-  React.useEffect(() => {
-    if (formValue.search !== undefined) {
-      console.log(formValue.search);
-      const filtredProducts = allProductsList.filter(prod => {
+  // Фильтрация поискового запроса
+  const startFilter = useCallback((prods, formValue) => {
+    if (formValue !== undefined) {
+      console.log(formValue);
+      const filtredProducts = prods.filter(prod => {
         const searchProd =
-          prod.product_name.toLowerCase().includes(formValue.search.toLowerCase()) ||
-          //   prod.product_key.toLowerCase().includes(formValue.search.toLowerCase()) ||
-          prod.date.toLowerCase().includes(formValue.search.toLowerCase());
-        //   || prod.price.toLowerCase().includes(formValue.search.toLowerCase());
+          prod.product_name.toLowerCase().includes(formValue.toLowerCase()) ||
+          //   prod.product_key.toLowerCase().includes(formValue.toLowerCase()) ||
+          prod.date.toLowerCase().includes(formValue.toLowerCase());
+        //   || prod.price.toLowerCase().includes(formValue.toLowerCase());
         return searchProd;
       });
       setFiltredProductsList(filtredProducts);
     } else {
-      setFiltredProductsList(allProductsList);
+      setFiltredProductsList(prods);
     }
-    console.log(filtredProductsList);
+  }, []);
+
+  React.useEffect(() => {
+    // if (formValue.search !== undefined) {
+    //   console.log(formValue.search);
+    //   const filtredProducts = allProductsList.filter(prod => {
+    //     const searchProd =
+    //       prod.product_name.toLowerCase().includes(formValue.search.toLowerCase()) ||
+    //       //   prod.product_key.toLowerCase().includes(formValue.search.toLowerCase()) ||
+    //       prod.date.toLowerCase().includes(formValue.search.toLowerCase());
+    //     //   || prod.price.toLowerCase().includes(formValue.search.toLowerCase());
+    //     return searchProd;
+    //   });
+    //   setFiltredProductsList(filtredProducts);
+    // } else {
+    //   setFiltredProductsList(allProductsList);
+    // }
+    // console.log(filtredProductsList);
+    startFilter(allProductsList, formValue.search);
 
     const firstProductIndex = currentPage * views - views;
-    console.log(firstProductIndex);
-
     const lastProductIndex =
       currentPage * views > filtredProductsList.length
         ? filtredProductsList.length
         : currentPage * views;
-    console.log(lastProductIndex);
+
     if (firstProductIndex >= filtredProductsList.length) {
       setCurrentPage(1);
     }
