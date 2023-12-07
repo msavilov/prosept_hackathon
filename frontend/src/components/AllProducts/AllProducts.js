@@ -5,6 +5,7 @@ import ProductsList from '../ProductsList/ProductsList';
 import ProductItem from '../ProductItem/ProductItem';
 import ProductDetails from '../Products/ProductDetails';
 import Pagination from '../Pagination/Pagination';
+import RelatedProducts from '../Products/RelatedProducts';
 
 function AllProducts(props) {
   // States
@@ -14,6 +15,9 @@ function AllProducts(props) {
   console.log(views);
   const [currentPage, setCurrentPage] = React.useState(1);
   console.log(currentPage);
+
+  const [editing, setEditing] = React.useState(true);
+  const [marked, setMarked] = React.useState([]);
 
   // Match open & close
   function handleMatch() {
@@ -39,7 +43,7 @@ function AllProducts(props) {
   const nextPage = () => setCurrentPage(prev => prev + 1);
 
   // products for table
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     props.setLoading(true);
     const firstProductIndex = currentPage * views - views;
     console.log(firstProductIndex);
@@ -61,7 +65,7 @@ function AllProducts(props) {
       }
     });
     props.setLoading(false);
-  }, [views, currentPage]);
+  }, [views, currentPage]);*/
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
@@ -92,9 +96,12 @@ function AllProducts(props) {
           handleMatchClose={handleMatchClose}
         />
       </div>
-      <div>
-        <ProductDetails />
-      </div>
+      {editing && RelatedProducts && (
+        <div>
+          <ProductDetails selectedProduct={RelatedProducts} />
+          <RelatedProducts clickedProduct={RelatedProducts} markedProducts={marked} />
+        </div>
+      )}
       <Pagination
         views={views}
         currentPage={currentPage}

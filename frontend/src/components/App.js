@@ -11,7 +11,7 @@ import UnLoading from './UnLoading/UnLoading';
 //import NotFound from './NotFound';
 //import InfoTooltip from './InfoTooltip';
 //import ProtectedRoute from './ProtectedRoute';
-import Allproducts from './AllProducts/AllProducts';
+import AllProducts from './AllProducts/AllProducts';
 //import DilerProducts from './DilerProducts';
 import Preloader from './Preloader/Preloader';
 
@@ -26,7 +26,7 @@ function App() {
       <AppHeader />
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='/all-products' element={<Allproducts setLoading={setLoading} />} />
+        <Route path='/all-products' element={<AllProducts setLoading={setLoading} />} />
         {/* <Route path='/diler-products' element={<DilerProducts />} /> */}
         {/* <Route path='/*' element={<NotFound />} /> */}
         <Route path='/statistics' element={<Statistics />} />
