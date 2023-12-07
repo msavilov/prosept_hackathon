@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 
-// import products from '../Products/Products';
 import ProductsList from '../ProductsList/ProductsList';
 import SearchForm from '../SearchForm/SearchForm';
 import Pagination from '../Pagination/Pagination';
@@ -17,8 +16,6 @@ function AllProducts(props) {
   const { formValue, handleChange } = useValidate();
 
   const products = props.products;
-  console.log(props);
-  console.log(allProductsList);
 
   // Match open & close
   function handleMatch() {

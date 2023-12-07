@@ -1,12 +1,18 @@
 // Navigation.js
 
-import React, { useState } from "react";
-import styles from "./Navigation.css";
+import React, { useState } from 'react';
+import styles from './Navigation.css';
 
 function Navigation({ onMenuToggle }) {
   return (
-    <div className="navigation-container">
-      <button className="button_pars" onClick={onMenuToggle}>Парсинг</button>
+    <div className='navigation-container'>
+      <button
+        className='button navigation-container__button'
+        onMouseEnter={onMenuToggle}
+        // onClick={onMenuToggle}
+      >
+        Парсинг
+      </button>
     </div>
   );
 }
