@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { getStatistics } from '../../utils/api';
 
 function Statistics(props) {
@@ -34,7 +34,7 @@ function Statistics(props) {
     if (!countsByDealerId[dealerId]) {
       countsByDealerId[dealerId] = {
         total: 0,
-        matched: 0,
+        matched: 0
       };
     }
 

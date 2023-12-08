@@ -1,5 +1,5 @@
 //сведения о продуктах
-import React, { useState } from 'react';
+import React from 'react';
 // import RelatedProducts from '../Products/RelatedProducts';
 import { marked } from '../../utils/config';
 import Dropdown from '../Dropdown/Dropdown';

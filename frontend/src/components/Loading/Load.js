@@ -1,7 +1,6 @@
-import React from "react";
+import React from 'react';
 
-function Load (props) {
-  
+function Load(props) {
   const { products } = props;
 
   return (
@@ -14,12 +13,13 @@ function Load (props) {
           </tr>
         </thead>
         <tbody>
-          {products && products.map(product => (
-            <tr key={product.id}>
-              <td>{product.date}</td>
-              <td>{product.dealer_id}</td>
-            </tr>
-          ))}
+          {products &&
+            products.map(product => (
+              <tr key={product.id}>
+                <td>{product.date}</td>
+                <td>{product.dealer_id}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
