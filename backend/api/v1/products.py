@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
-
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.db import get_async_session
-from backend.crud.products import create_product, get_all_products, get_product_by_id
+from backend.crud.products import (create_product, get_all_products,
+                                   get_product_by_id)
 from backend.schemas.products import ProductScheme
 
 router_products = APIRouter(

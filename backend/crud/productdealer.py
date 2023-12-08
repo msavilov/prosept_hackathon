@@ -1,8 +1,7 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from backend.models.models import Product
-from backend.models.models import ProductDealer
+from backend.models.models import Product, ProductDealer
 from backend.schemas.productdealer import ProductDealerScheme
 
 
