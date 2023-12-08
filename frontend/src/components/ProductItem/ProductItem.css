@@ -67,34 +67,3 @@
 .products__matching-item {
   margin-bottom: 5px;
 }
-
-.product__button-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  background-color: transparent;
-  border: none;
-}
-
-.product__button-close::before,
-.product__button-close::after {
-  content: '';
-  position: absolute;
-  width: 2px;
-  height: 20px;
-  background-color: #333;
-}
-
-.product__button-close::before {
-  transform: rotate(45deg);
-}
-
-.product__button-close::after {
-  transform: rotate(-45deg);
-}

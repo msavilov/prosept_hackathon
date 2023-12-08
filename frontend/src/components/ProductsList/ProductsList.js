@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import ProductItem from '../ProductItem/ProductItem';
 import icon_match from '../../images/icon_match.png';
 import ProductDetails from '../ProductDetails/ProductDetails';
-// import RelatedProducts from '../Products/RelatedProducts';
 
 function ProductsList(props) {
   const [selectedProd, setSelectedProd] = React.useState({});
@@ -51,7 +50,6 @@ function ProductsList(props) {
       {props.isMatch && (
         <>
           <ProductDetails selectedProd={selectedProd} isMatch={props.isMatch} />
-          {/* <RelatedProducts /> */}
           <button
             className='button button-close product__button-close '
             onClick={props.handleMatchClose}

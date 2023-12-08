@@ -25,12 +25,12 @@ function AllProducts(props) {
     setIsMatch(false);
   };
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const prevPage = () => setCurrentPage((prev) => prev - 1);
-  const nextPage = () => setCurrentPage((prev) => prev + 1);
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const prevPage = () => setCurrentPage(prev => prev - 1);
+  const nextPage = () => setCurrentPage(prev => prev + 1);
 
   const pagination = useCallback(
-    (prods) => {
+    prods => {
       const firstProductIndex = currentPage * views - views;
       const lastProductIndex =
         currentPage * views > prods.length ? prods.length : currentPage * views;
@@ -54,23 +54,20 @@ function AllProducts(props) {
     [currentPage, views]
   );
 
-  const startFilter = useCallback(
-    (prods, formValue) => {
-      if (formValue !== undefined) {
-        const filteredProducts = prods.filter((prod) => {
-          const searchProd =
-            prod.product_name.toLowerCase().includes(formValue.toLowerCase()) ||
-            prod.date.toLowerCase().includes(formValue.toLowerCase());
+  const startFilter = useCallback((prods, formValue) => {
+    if (formValue !== undefined) {
+      const filteredProducts = prods.filter(prod => {
+        const searchProd =
+          prod.product_name.toLowerCase().includes(formValue.toLowerCase()) ||
+          prod.date.toLowerCase().includes(formValue.toLowerCase());
 
-          return searchProd;
-        });
-        setFiltredProductsList(filteredProducts);
-      } else {
-        setFiltredProductsList(prods);
-      }
-    },
-    []
-  );
+        return searchProd;
+      });
+      setFiltredProductsList(filteredProducts);
+    } else {
+      setFiltredProductsList(prods);
+    }
+  }, []);
 
   const handleOrderSubmit = async () => {
     try {
@@ -107,7 +104,7 @@ function AllProducts(props) {
             max='500'
             step='5'
             value={views}
-            onChange={(e) => setViews(e.target.value)}
+            onChange={e => setViews(e.target.value)}
           />
         </label>
         <SearchForm formValue={formValue} handleChange={handleChange} />
@@ -119,7 +116,6 @@ function AllProducts(props) {
           handleMatch={handleMatch}
           handleMatchClose={handleMatchClose}
         />
-        <button onClick={handleOrderSubmit}>Submit Order</button>
       </div>
       <Pagination
         views={views}
