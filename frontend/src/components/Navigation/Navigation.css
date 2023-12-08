@@ -1,0 +1,29 @@
+.navigation-container__button {
+  padding: 10px;
+  background-color: #fff;
+}
+.navigation-container__button:hover:first-child {
+  padding: 10px;
+  background-color: #fff;
+}
+
+.navigation-container {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  top: 50px;
+  min-width: auto;
+  background-color: #fff; /* Цвет фона меню */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Тень меню */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  line-height: normal;
+}
+
+.menu.active {
+  opacity: 1;
+  visibility: visible;
+}

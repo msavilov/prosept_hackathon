@@ -1,0 +1,60 @@
+/* @import url(./vendor/normalize.css); */
+
+/*fonts*/
+@import url(./vendor/fonts.css);
+
+/*body*/
+@import url(./components/App.css);
+
+/*blocks*/
+@import url(./blocks/section/section.css);
+@import url(./blocks/section-title/section-title.css);
+
+/*button*/
+@import url(./blocks/button/button.css);
+@import url(./blocks/button-close/button-close.css);
+
+/*text-blocks*/
+@import url(./blocks/sr-only/sr-only.css);
+@import url(./blocks/link/link.css);
+@import url(./blocks/text/text.css);
+@import url(./blocks/title/title.css);
+/* @import url(./blocks/form/form.css);
+@import url(./blocks/form/__input/form__input.css);
+@import url(./blocks/form/__input/_type/form__input_type_error.css);
+@import url(./blocks/form/__button/form__button.css);
+@import url(./blocks/error/error.css);
+@import url(./blocks/error/_visible/error_visible.css); */
+
+/*Preloader*/
+@import url(./components/Preloader/Preloader.css);
+
+/*секция header*/
+@import url(./components/Header/AppHeader.css);
+@import url(./components/Header/Header.css);
+
+/*footer*/
+@import url(./components/Footer/Footer.css);
+
+/*Navigation*/
+@import url(./components/Navigation/Navigation.css);
+@import url(./components/Pagination/Pagination.css);
+
+/*Main*/
+@import url(./components/Main/Main.css);
+
+/*Other*/
+@import url(./components/SearchForm/SearchForm.css);
+
+/*NotFound*/
+/* @import url(./components/NotFound.css); */
+
+/*Product*/
+@import url(./components/AllProducts/AllProducts.css);
+@import url(./components/DilerProducts/DilerProducts.css);
+@import url(./components/ProductsList/ProductsList.css);
+@import url(./components/ProductItem/ProductItem.css);
+
+
+@import url(./components/Statistics/Statistics.css);
+@import url(./components/Loading/Load.css);
