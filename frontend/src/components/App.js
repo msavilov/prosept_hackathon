@@ -11,7 +11,7 @@ import AllProducts from './AllProducts/AllProducts';
 import Preloader from './Preloader/Preloader';
 import { LoadingContext } from '../contexts/LoadingContext';
 import { LoggedInContext } from '../contexts/LoggedInContext';
-import products from './Products/Products';
+import products from '../utils/products';
 import { marked } from '../utils/config';
 
 function App() {

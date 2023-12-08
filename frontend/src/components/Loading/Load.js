@@ -3,25 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Load(props) {
   const { products } = props;
-  console.log(products);
-  const date = products.date;
-  // by date
-  // const listByDate = {};
-
-  // const dateList = products.forEach(product => {
-  //   const date = product.date;
-
-  // if (!listByDate[date]) {
-  //   listByDate[date] = {
-  //     ...date
-  //   };
-  // }
-
-  //   listByDate[date].total++;
-  // });
-
   const dateList = [...new Set(products.flatMap(({ date }) => date))];
-  console.log(dateList);
 
   return (
     <div className='products__main products-load__main'>
