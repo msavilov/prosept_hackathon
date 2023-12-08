@@ -5,28 +5,28 @@ const HEADERS = {
 
 const marked = [
   {
-    article: 123,
-    name: 'fff',
+    article: '066-10',
+    name: 'Антисептик универсальный ХМФ-БФ, ГОСТ / 10 л    ',
     id: 1
   },
   {
-    article: 22,
-    name: 'gg ghhfkj f444 fff',
+    article: '067-5',
+    name: 'Антисептик трудновымываемый ХМББ, ГОСТ / 5 л    ',
     id: 2
   },
   {
-    article: 33333333,
-    name: 'fff',
+    article: '009-1',
+    name: 'Антисептик для влажной древесиныPROSEPT BiOконцентрат 1:19  / 1 л',
     id: 3
   },
   {
-    article: 444,
-    name: 'ffffffff5244 555f',
+    article: '067-10',
+    name: 'Антисептик трудновымываемый ХМББ, ГОСТ / 10 л',
     id: 4
   },
   {
-    article: 655555,
-    name: 'fffjjfdl; avlmnjvhvcfgxc',
+    article: '015-10',
+    name: 'Антисептик  ECO UNIVERSAL  / 10 л',
     id: 5
   }
 ];
