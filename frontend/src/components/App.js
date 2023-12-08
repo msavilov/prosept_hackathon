@@ -14,6 +14,7 @@ import { LoggedInContext } from '../contexts/LoggedInContext';
 import products from './Products/Products';
 import { BASE_URL, HEADERS, marked } from '../utils/config';
 
+
 function App() {
   // States
   const [isLoading, setIsLoading] = React.useState(false);

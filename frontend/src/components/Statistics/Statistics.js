@@ -1,8 +1,23 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import { getStatistics } from '../../utils/api';
 
 function Statistics(props) {
   const { products, marked } = props;
+
+  const [statistics, setStatistics] = useState(null);
+
+  useEffect(() => {
+    const fetchStatistics = async () => {
+      try {
+        const data = await getStatistics();
+        setStatistics(data);
+      } catch (error) {
+        console.error('Error fetching statistics:', error);
+      }
+    };
+
+    fetchStatistics();
+  }, []);
 
   if (!products || !marked) {
     return <div>No data available.</div>;
@@ -33,7 +48,6 @@ function Statistics(props) {
   });
 
   const countsList = Object.entries(countsByDealerId);
-
 
   return (
     <section className='section products' aria-label='Статистика'>
@@ -71,4 +85,3 @@ function Statistics(props) {
 }
 
 export default Statistics;
-

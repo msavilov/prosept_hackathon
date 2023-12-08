@@ -4,9 +4,9 @@ import ProductsList from '../ProductsList/ProductsList';
 import SearchForm from '../SearchForm/SearchForm';
 import Pagination from '../Pagination/Pagination';
 import { useValidate } from '../../utils/use-validate';
+import { sendOrder } from '../../utils/api'; // Adjust the path based on your project structure
 
 function AllProducts(props) {
-  // States
   const [isMatch, setIsMatch] = React.useState(false);
   const [allProductsList, setAllProductsList] = React.useState([]);
   const [filtredProductsList, setFiltredProductsList] = React.useState([]);
@@ -17,22 +17,20 @@ function AllProducts(props) {
 
   const products = props.products;
 
-  // Match open & close
-  function handleMatch() {
+  const handleMatch = () => {
     setIsMatch(true);
-  }
+  };
 
-  function handleMatchClose() {
+  const handleMatchClose = () => {
     setIsMatch(false);
-  }
+  };
 
-  const paginate = pageNumber => setCurrentPage(pageNumber);
-  const prevPage = () => setCurrentPage(prev => prev - 1);
-  const nextPage = () => setCurrentPage(prev => prev + 1);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const prevPage = () => setCurrentPage((prev) => prev - 1);
+  const nextPage = () => setCurrentPage((prev) => prev + 1);
 
-  // function for pagination
   const pagination = useCallback(
-    prods => {
+    (prods) => {
       const firstProductIndex = currentPage * views - views;
       const lastProductIndex =
         currentPage * views > prods.length ? prods.length : currentPage * views;
@@ -56,46 +54,47 @@ function AllProducts(props) {
     [currentPage, views]
   );
 
-  // Search
   const startFilter = useCallback(
     (prods, formValue) => {
       if (formValue !== undefined) {
-        const filtredProducts = prods.filter(prod => {
+        const filteredProducts = prods.filter((prod) => {
           const searchProd =
             prod.product_name.toLowerCase().includes(formValue.toLowerCase()) ||
             prod.date.toLowerCase().includes(formValue.toLowerCase());
 
           return searchProd;
         });
-        setFiltredProductsList(filtredProducts);
+        setFiltredProductsList(filteredProducts);
       } else {
         setFiltredProductsList(prods);
       }
-      console.log(filtredProductsList);
     },
-    [filtredProductsList]
+    []
   );
 
-  // products for table
+  const handleOrderSubmit = async () => {
+    try {
+      const response = await sendOrder(products.map(product => product.id));
+      console.log('Order sent successfully:', response);
+      // Handle the successful order submission if needed
+    } catch (error) {
+      console.error('Error sending order:', error);
+      // Handle errors or display an error message
+    }
+  };
+
   React.useEffect(() => {
-    //props.setLoading(true);
     setAllProductsList(products);
-    //pagination(allProductsList);
-    // startFilter(allProductsList, formValue.search);
-    //props.setLoading(false);
-  }, []);
+  }, [products]);
 
   React.useEffect(() => {
     startFilter(allProductsList, formValue.search);
     pagination(allProductsList);
-  }, [views, currentPage, formValue, allProductsList]);
+  }, [views, currentPage, formValue, allProductsList, startFilter, pagination]);
 
   return (
     <section className='section products' aria-label='Таблица товаров'>
       <h1 className='section-title products__title'>Товары продавцов</h1>
-      <div className='products__optoins'>
-        <label className='text products__label' htmlFor='views'></label>
-      </div>
       <div className='products__options'>
         <label className='text products__label' htmlFor='views'>
           Show:
@@ -108,7 +107,7 @@ function AllProducts(props) {
             max='500'
             step='5'
             value={views}
-            onChange={e => setViews(e.target.value)}
+            onChange={(e) => setViews(e.target.value)}
           />
         </label>
         <SearchForm formValue={formValue} handleChange={handleChange} />
@@ -120,6 +119,7 @@ function AllProducts(props) {
           handleMatch={handleMatch}
           handleMatchClose={handleMatchClose}
         />
+        <button onClick={handleOrderSubmit}>Submit Order</button>
       </div>
       <Pagination
         views={views}
