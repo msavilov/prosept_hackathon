@@ -31,10 +31,10 @@ function AllProducts(props) {
   const nextPage = () => setCurrentPage(prev => prev + 1);
 
   // function for pagination
-  /*const pagination = useCallback(
+  const pagination = useCallback(
     prods => {
       const firstProductIndex = currentPage * views - views;
-      /*const lastProductIndex =
+      const lastProductIndex =
         currentPage * views > prods.length ? prods.length : currentPage * views;
 
       if (firstProductIndex >= prods.length) {
@@ -78,25 +78,16 @@ function AllProducts(props) {
 
   // products for table
   React.useEffect(() => {
-<<<<<<< HEAD
     //props.setLoading(true);
-=======
-    // props.setLoading(true);
->>>>>>> e75d10d2730194c6acf74938ef621e8ed672de40
     setAllProductsList(products);
     //pagination(allProductsList);
     // startFilter(allProductsList, formValue.search);
-<<<<<<< HEAD
     //props.setLoading(false);
-  }, []);*/
-=======
-    // props.setLoading(false);
   }, []);
->>>>>>> e75d10d2730194c6acf74938ef621e8ed672de40
 
   React.useEffect(() => {
-    // startFilter(allProductsList, formValue.search);
-    //pagination(allProductsList);
+    startFilter(allProductsList, formValue.search);
+    pagination(allProductsList);
   }, [views, currentPage, formValue, allProductsList]);
 
   return (

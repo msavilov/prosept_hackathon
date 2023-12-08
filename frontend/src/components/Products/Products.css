@@ -8,11 +8,8 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   z-index: 1000;
-  width: 100%; /* Make the modal fill the entire width */
-  max-width: 600px; /* Set a maximum width if needed */
 }
 
-/* Rest of your styles remain unchanged */
 .products__details img {
   max-width: 100%;
   height: auto;
