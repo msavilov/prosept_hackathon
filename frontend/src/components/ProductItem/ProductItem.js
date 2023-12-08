@@ -1,8 +1,6 @@
 import React from 'react';
 
 function ProductItem(props) {
-  // States
-  const [isSelected, setIsSelected] = React.useState(false);
   return props.isMatch ? (
     <tr className='product'>
       <td className='product__item product__name'>
@@ -20,7 +18,10 @@ function ProductItem(props) {
           className={`button product__mark product__button-open ${
             props.product.is_marked ? 'product__item_is_marked' : ''
           }`}
-          onClick={props.handleMatch}
+          onClick={() => {
+            props.handleMatchSelect(props.product);
+            props.handleMatch();
+          }}
         ></button>
       </td>
     </tr>

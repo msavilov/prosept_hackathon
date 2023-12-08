@@ -1,11 +1,7 @@
 import React from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import AppHeader from './Header/AppHeader';
-//import Main from './Main';
-//import Header from './Header/Header';
-import Main from './Main/Main';
 import Footer from './Footer/Footer';
-
 import Statistics from './Statistics/Statistics';
 import Load from './Loading/Load';
 //import NotFound from './NotFound';
@@ -28,19 +24,20 @@ function App() {
   ) : (
     <div className='App page'>
       <AppHeader />
-      <Routes>
-        <Route path='/' element={<Main />} />
-        <Route
-          path='/all-products'
-          element={<AllProducts setLoading={setIsLoading} products={products} />}
-        />
-        <Route path='/load' element={<Load />} />
-        {/* <Route path='/*' element={<NotFound />} /> */}
-        <Route
-          path='/statistics'
-          element={<Statistics products={products} marked={marked} isMatch={true} />}
-        />
-      </Routes>
+      <main>
+        <Routes>
+          <Route
+            path='/all-products'
+            element={<AllProducts setLoading={setIsLoading} products={products} />}
+          />
+          <Route path='/load' element={<Load />} />
+          {/* <Route path='/*' element={<NotFound />} /> */}
+          <Route
+            path='/statistics'
+            element={<Statistics products={products} marked={marked} isMatch={true} />}
+          />
+        </Routes>
+      </main>
       <Footer />
     </div>
   );

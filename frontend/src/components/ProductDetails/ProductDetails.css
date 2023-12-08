@@ -1,0 +1,24 @@
+.product-details {
+  width: 100%;
+  border-bottom: 3px solid #000;
+  margin-left: 15px;
+}
+
+.product-details__title {
+  margin: 0;
+  background-color: #f2f2f2;
+  font-size: 18px;
+  line-height: 1.21;
+  font-weight: 600;
+  border-bottom: 3px solid #000;
+  min-height: 26.2px;
+}
+
+.product-details__title:not(:first-of-type) {
+  margin-top: 30px;
+}
+
+.product-details__text {
+  margin: 0;
+  background-color: fff;
+}

@@ -33,7 +33,6 @@ function AllProducts(props) {
   // function for pagination
   const pagination = useCallback(
     prods => {
-      console.log(prods);
       const firstProductIndex = currentPage * views - views;
       const lastProductIndex =
         currentPage * views > prods.length ? prods.length : currentPage * views;
