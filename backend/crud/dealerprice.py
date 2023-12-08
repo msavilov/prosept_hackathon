@@ -1,9 +1,9 @@
 from datetime import date
 
+from fastapi.encoders import jsonable_encoder
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from fastapi.encoders import jsonable_encoder
 from backend.models.models import DealerPrice
 from backend.schemas.dealerprice import DealerPriceScheme
 

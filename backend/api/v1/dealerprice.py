@@ -1,19 +1,20 @@
 from datetime import date
 from typing import Optional
 
-from fastapi import APIRouter, Body, Depends
-
+from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.db import get_async_session
-from backend.crud.dealerprice import create_dealer_price, get_all_dealer_prices, get_dealer_price_by_id, update_dealer_price, get_dealer_price_by_date
+from backend.crud.dealerprice import (create_dealer_price,
+                                      get_all_dealer_prices,
+                                      get_dealer_price_by_date,
+                                      get_dealer_price_by_id,
+                                      update_dealer_price)
 from backend.schemas.dealerprice import DealerPriceScheme
-
-from backend.schemas.request_examples import request_examples
 
 router_dealer_price = APIRouter(
     prefix='/dealer_price',
-    tags=['/dealer_price - получить/создать товары дилера (по ТЗ полученные из парсера)'],
+    tags=['/dealer_price - получить/создать товары дилера'],
 )
 
 

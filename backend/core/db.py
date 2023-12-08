@@ -1,7 +1,6 @@
 """Временное решение для разработки."""
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
-from sqlalchemy.orm import declared_attr
+from sqlalchemy.orm import declarative_base, declared_attr, sessionmaker
 
 from backend.core.config import settings
 

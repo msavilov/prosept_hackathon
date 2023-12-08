@@ -1,4 +1,5 @@
-from sqlalchemy import Boolean, Column, Date, Float, ForeignKey, Integer, BigInteger, String
+from sqlalchemy import (BigInteger, Boolean, Column, Date, Float, ForeignKey,
+                        Integer, String)
 
 from backend.core.db import Base
 
