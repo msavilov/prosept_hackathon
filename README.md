@@ -1,6 +1,6 @@
 ## 'Хакатон Просепт х Практикум ноябрь-декабрь’23'
 
-### Описание
+### Задача
 Разработка решения, которое автоматизирует процесс сопоставления товаров заказчика с размещаемыми товарами дилеров
 
 
@@ -19,7 +19,6 @@
 
 
 ### Технологии
-**Backend**
 - _[Python 3.11.6](https://www.python.org/downloads/release/python-3116/)_
 - _[FastAPI 0.104.1](https://fastapi.tiangolo.com/#installation)_
 - _[SQLAlchemy 2.0.23](https://docs.sqlalchemy.org/en/20/)_
@@ -30,9 +29,11 @@
 - _[Docker and docker-compose](https://www.docker.com/get-started/)_
 - _[Websockets 12.0](https://fastapi.tiangolo.com/advanced/websockets/)_
 
+- _[React](https://react.dev/)_
 
 ### Описание:
-Реализация проекта 
+В качестве фреймворка выбран FastAPI так как backend написан полностью с использование ассинхронного механизма.
+
 
 ### Инструкция по запуска backend'a.
 **Без докера**
