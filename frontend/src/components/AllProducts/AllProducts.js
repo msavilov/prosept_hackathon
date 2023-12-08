@@ -78,11 +78,11 @@ function AllProducts(props) {
 
   // products for table
   React.useEffect(() => {
-    props.setLoading(true);
+    // props.setLoading(true);
     setAllProductsList(products);
     pagination(allProductsList);
     // startFilter(allProductsList, formValue.search);
-    props.setLoading(false);
+    // props.setLoading(false);
   }, []);
 
   React.useEffect(() => {
