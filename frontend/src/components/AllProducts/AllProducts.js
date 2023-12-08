@@ -31,11 +31,11 @@ function AllProducts(props) {
   const nextPage = () => setCurrentPage(prev => prev + 1);
 
   // function for pagination
-  const pagination = useCallback(
+  /*const pagination = useCallback(
     prods => {
       console.log(prods);
       const firstProductIndex = currentPage * views - views;
-      const lastProductIndex =
+      /*const lastProductIndex =
         currentPage * views > prods.length ? prods.length : currentPage * views;
 
       if (firstProductIndex >= prods.length) {
@@ -79,16 +79,16 @@ function AllProducts(props) {
 
   // products for table
   React.useEffect(() => {
-    props.setLoading(true);
+    //props.setLoading(true);
     setAllProductsList(products);
-    pagination(allProductsList);
+    //pagination(allProductsList);
     // startFilter(allProductsList, formValue.search);
-    props.setLoading(false);
-  }, []);
+    //props.setLoading(false);
+  }, []);*/
 
   React.useEffect(() => {
     // startFilter(allProductsList, formValue.search);
-    pagination(allProductsList);
+    //pagination(allProductsList);
   }, [views, currentPage, formValue, allProductsList]);
 
   return (
