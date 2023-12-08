@@ -1,0 +1,11 @@
+.footer {
+  /* position: fixed; */
+  padding-top: 25px;
+  padding-bottom: 25px;
+  bottom: 0;
+  background-color: #f2f2f2;
+}
+
+.footer__copyright {
+  font-size: 14px;
+}

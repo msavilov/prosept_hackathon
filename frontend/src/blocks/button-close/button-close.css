@@ -1,0 +1,11 @@
+.button-close {
+  background: url(../../images/icon_close.png) no-repeat center;
+  z-index: 1;
+  background-size: 10px;
+  border: 1px solid #b9b9b9;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
