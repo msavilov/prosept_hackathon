@@ -49,14 +49,6 @@ function RelatedProducts({ clickedProduct, markedProducts }) {
                   {product.product_name}
                 </a>
               </td>
-              <td className='product__item'>
-                <button
-                  className={`button product__mark product__button-open ${
-                    product.is_marked ? 'product__item_is_marked' : ''
-                  }`}
-                  onClick={() => handleMatch(product)}
-                ></button>
-              </td>
             </tr>
           ))}
         </tbody>
