@@ -33,7 +33,6 @@ function AllProducts(props) {
   // function for pagination
   /*const pagination = useCallback(
     prods => {
-      console.log(prods);
       const firstProductIndex = currentPage * views - views;
       /*const lastProductIndex =
         currentPage * views > prods.length ? prods.length : currentPage * views;
@@ -79,12 +78,21 @@ function AllProducts(props) {
 
   // products for table
   React.useEffect(() => {
+<<<<<<< HEAD
     //props.setLoading(true);
+=======
+    // props.setLoading(true);
+>>>>>>> e75d10d2730194c6acf74938ef621e8ed672de40
     setAllProductsList(products);
     //pagination(allProductsList);
     // startFilter(allProductsList, formValue.search);
+<<<<<<< HEAD
     //props.setLoading(false);
   }, []);*/
+=======
+    // props.setLoading(false);
+  }, []);
+>>>>>>> e75d10d2730194c6acf74938ef621e8ed672de40
 
   React.useEffect(() => {
     // startFilter(allProductsList, formValue.search);
