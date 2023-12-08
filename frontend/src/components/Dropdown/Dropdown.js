@@ -1,17 +1,25 @@
 import React from 'react';
+import { marked } from '../../utils/config';
 
 function Dropdown(props) {
-  const [selectedOption, setSelectedOption] = React.useState('');
+  //   const [selectedOption, setSelectedOption] = React.useState('');
 
   const handleSelect = e => {
-    const value = e.target.value;
-    setSelectedOption(value);
+    console.log(e.id);
+    const value = e.id;
+    props.setSelectedOption(value);
     // onSelect(value);
   };
 
   return props.marked.map(option => (
-    <div key={option.id} onClick={() => handleSelect(option)}>
-      <td value={option.name}>{option.name}</td>
+    <div
+      className={`product-details__text product-details__marked ${
+        props.selectedOption === option.id ? 'product-details__active-marked' : ''
+      }`}
+      key={option.id}
+      onClick={() => handleSelect(option)}
+    >
+      <td value='marked'>{option.name}</td>
       <td>{option.article}</td>
     </div>
   ));

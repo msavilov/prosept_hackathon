@@ -22,3 +22,28 @@
   margin: 0;
   background-color: fff;
 }
+
+.product-details__marked {
+  width: auto;
+  background-color: #f9f9f9;
+  padding: 5px;
+  border-bottom: solid 3px #dfdfdf;
+}
+
+/* .product-details__marked:nth-of-type(2n) {
+  background-color: #fff;
+} */
+
+.product-details__active-marked {
+  background-color: #7d9cdf;
+}
+
+.product-details__buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.product-details__button {
+  padding: 10px;
+}
