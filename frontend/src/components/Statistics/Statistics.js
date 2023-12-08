@@ -58,24 +58,30 @@ function Statistics(props) {
             <tr>
               <td className='products__head-item'>Дилеры</td>
               <td className='products__head-item'>Все товары</td>
-              <td className='products__head-item'>Сопоставленные продукты</td>
-              <td className='products__head-item'>Несопоставленные продукты</td>
+              <td className='products__head-item'>Сопоставленные</td>
+              <td className='products__head-item'>Несопоставленные</td>
+              <td className='products__head-item'>Неуспешно сопоставленные</td>
+              <td className='products__head-item'>Отложенные</td>
             </tr>
           </thead>
           <tbody>
             {countsList.map(([dealerId, counts]) => (
               <tr key={dealerId}>
-                <td className='products__head-item'>{dealerId}</td>
-                <td className='products__head-item'>{counts.total}</td>
-                <td className='products__head-item'>{counts.matched}</td>
-                <td className='products__head-item'>{counts.total - counts.matched}</td>
+                <td className='product__item'>{dealerId}</td>
+                <td className='product__item'>{counts.total}</td>
+                <td className='product__item'>{counts.matched}</td>
+                <td className='product__item'>{counts.total - counts.matched}</td>
+                <td className='product__item'>{counts.total - counts.matched}</td>
+                <td className='product__item'>{counts.total - counts.matched}</td>
               </tr>
             ))}
             <tr>
-              <td className='products__head-item'>Итого</td>
-              <td className='products__head-item'>{totalProducts}</td>
-              <td className='products__head-item'>{totalMatched}</td>
-              <td className='products__head-item'>{totalProducts - totalMatched}</td>
+              <td className='product__item'>Итого</td>
+              <td className='product__item'>{totalProducts}</td>
+              <td className='product__item'>{totalMatched}</td>
+              <td className='product__item'>{totalProducts - totalMatched}</td>
+              <td className='product__item'>{totalProducts - totalMatched}</td>
+              <td className='product__item'>{totalProducts - totalMatched}</td>
             </tr>
           </tbody>
         </table>
