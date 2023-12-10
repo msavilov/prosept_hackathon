@@ -6,7 +6,6 @@
 .product:nth-child(2n) {
   background-color: #fff;
 }
-
 .product__item {
   padding: 5px;
   border-bottom: solid 3px #dfdfdf;

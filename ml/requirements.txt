@@ -1,0 +1,7 @@
+nltk
+numpy
+pandas
+num2words
+pymystem3
+scikit-learn
+transliterate
