@@ -38,7 +38,7 @@
 
 ### Архивы репозитория
 - backend https://disk.yandex.ru/d/sstiVswuuoMgTQ
-- 
+- frontend https://disk.yandex.ru/d/7tRJBTV5fiLU6g
 
 ### Инструкция по запуска backend'a.
 
@@ -117,7 +117,7 @@ docker compose up --build
 
 ### Инструкция по запуску frontend
 
-#### 1. Кллонирование репозитория
+#### 1. Клонирование репозитория
 
 В терминале (командной строке):
 
