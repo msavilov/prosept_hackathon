@@ -1,0 +1,28 @@
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagination__title {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.pagination__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  color: #000;
+}
+
+.pagination__button_active {
+  border-radius: 2px;
+  border: 1px solid #575757;
+  background-color: #c5c5c5;
+  color: #000;
+}

@@ -1,0 +1,8 @@
+.products {
+  padding-bottom: 30px;
+}
+
+.products__options {
+  display: flex;
+  justify-content: space-between;
+}
