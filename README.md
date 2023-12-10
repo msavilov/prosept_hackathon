@@ -38,7 +38,7 @@
 
 ### Архивы репозитория
 - backend https://disk.yandex.ru/d/sstiVswuuoMgTQ
-- 
+- frontend https://disk.yandex.ru/d/7tRJBTV5fiLU6g
 
 ### Инструкция по запуска backend'a.
 
