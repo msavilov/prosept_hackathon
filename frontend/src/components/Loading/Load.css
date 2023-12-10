@@ -1,0 +1,10 @@
+.products-load__table {
+  margin-left: 30px;
+  max-width: 250px;
+}
+
+.products-load__item {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 15px;
+}

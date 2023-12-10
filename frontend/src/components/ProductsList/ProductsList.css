@@ -9,11 +9,6 @@
   width: 100%;
   border: none;
   border-spacing: 0;
-  border-bottom: 3px solid #000;
-}
-
-.products__table_match {
-  max-width: 250px;
 }
 
 .products__head {

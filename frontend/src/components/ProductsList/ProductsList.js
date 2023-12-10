@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import ProductItem from '../ProductItem/ProductItem';
 import icon_match from '../../images/icon_match.png';
-
-import ProductDetails from '../Products/ProductDetails';
-import RelatedProducts from '../Products/RelatedProducts';
+import ProductDetails from '../ProductDetails/ProductDetails';
 
 function ProductsList(props) {
+  const [selectedProd, setSelectedProd] = React.useState({});
+  const handleMatchSelect = useCallback(product => {
+    setSelectedProd(product);
+  }, []);
+  console.log(selectedProd);
+
   return (
     <div className='products__main'>
       <table className={`products__table ${props.isMatch ? 'products__table_match' : ''}`}>
@@ -38,19 +42,19 @@ function ProductsList(props) {
               isMatch={props.isMatch}
               handleMatch={props.handleMatch}
               handleMatchClose={props.handleMatchClose}
+              handleMatchSelect={handleMatchSelect}
             />
           ))}
         </tbody>
       </table>
-      <div>
-        <ProductDetails />
-        <RelatedProducts />
-      </div>
       {props.isMatch && (
-        <button
-          className='button button-close product__button-close '
-          onClick={props.handleMatchClose}
-        ></button>
+        <>
+          <ProductDetails selectedProd={selectedProd} isMatch={props.isMatch} />
+          <button
+            className='button button-close product__button-close '
+            onClick={props.handleMatchClose}
+          ></button>
+        </>
       )}
     </div>
   );
