@@ -33,8 +33,12 @@
 - _[React](https://react.dev/)_
 
 ### Описание:
-
 В качестве фреймворка выбран FastAPI так как backend написан полностью с использование ассинхронного механизма.
+
+
+### Архивы репозитория
+- backend https://disk.yandex.ru/d/sstiVswuuoMgTQ
+- 
 
 ### Инструкция по запуска backend'a.
 
